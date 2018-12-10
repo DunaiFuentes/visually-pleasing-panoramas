@@ -1,0 +1,65 @@
+run=structute_definition
+	
+structute_definition=[
+
+    ################################
+    # sample and label dimensions  #
+    ################################
+    
+    imageW = 200        #112 for models 1 and 2
+    imageH = 200  
+    imageCh1 = 3
+    labelDim = 2
+    
+    features = ImageInput(imageW, imageH, imageCh1, imageLayout=$imageLayout$)
+    featScale = Constant(0.00390625)   #map to 0-1
+    featScaled = Scale(featScale, features)
+    labels = InputValue(labelDim,1)
+    
+    ##########################
+    # Network Structure      #
+    ##########################
+    
+    parmScale = 1
+    
+    # Conv1
+    kW1 = 5
+    hStride1 = 1
+    KH1 = 5
+    vStride1 = 1
+    totalinputs = 75  # kW1*kH1*imageCh1
+    cMap1 = 36
+    wScale1 = 10
+    bValue1 = 1
+    conv1_act = ConvReLULayer(featScaled, cMap1, totalinputs, kW1, kH1, hStride1, vStride1, , wScale1, bValue1)
+    
+    # pool1
+    pool1W = 4
+    pool1H = 4
+    pool1hStride = 4
+    pool1vStride = 4
+    pool1 = MaxPooling(conv1_act, pool1W, pool1H, pool1hStride, pool1vStride, imageLayout=$imageLayout$)
+    
+    # hidden1
+    finalW = 49
+    finalH = 49
+    # preDenseDim = 86436 #(((200-4)/4)^2)*36
+    hiddenOutDim1 = 1000
+    # hiddenOut1 = DNNSigmoidLayer(preDenseDim, hiddenOutDim1, pool1, parmScale)
+    hiddenOut1 = DNNImageSigmoidLayer(finalW, finalH, cMap1, hiddenOutDim1, pool1, parmScale)
+    
+    # Last layer
+    o1 = DNNLayer(hiddenOutDim1, labelDim, hiddenOut1, parmScale)
+    
+    prediction = Softmax(o1)
+    
+    ce = CrossEntropyWithSoftmax(labels, o1)
+    err = ClassificationError(labels, o1)
+    
+      # root nodes
+      FeatureNodes=(features)
+      LabelNodes=(labels)
+      CriteriaNodes=(ce)
+      EvalNodes=(err)
+      OutputNodes=(prediction)
+]

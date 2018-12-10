@@ -1,0 +1,2 @@
+	In '/Raw' you can find the 19 selected images. Preprocessing has to be done to break them into patches for Approach 1.
+	In '/Processed' there is nothing yet, but will be filled by 'ProcessingPanoramas_LowRes.m' (in 'VPP_Code_RR/Panoramas2Classify_LowRes').

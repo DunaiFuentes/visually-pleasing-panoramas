@@ -1,0 +1,131 @@
+# which commands to run # no dump because ERROR
+command=Train:Test:Output
+
+#required...
+modelPath="Models/model.dnn"	# where to write the model to
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    # larger values mean more output
+
+#######################################
+#  TRAINING CONFIG                    #
+#######################################
+Train=[
+	action="train"
+	
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "FPanorama.ndl"
+    ]
+	
+	SGD = [	
+		epochSize=0		            # =0 means size of the training set
+		minibatchSize=15
+		learningRatesPerMB=0.01*3:0.001	    # learning rates per MB
+        momentumPerMB = 0.9
+		maxEpochs=15
+        dropoutRate=0.0
+	]
+	
+	# parameter values for the reader
+	reader = [
+		readerType ="ImageReader"
+		file = "Train_b.txt"
+        randomize="Auto"
+		
+		features=[			
+			width=200
+            height=200
+            channels=3
+                     
+            # Below are the optional parameters.
+            # Possible values: Center, Random. Default: Center
+            cropType="Center"
+            # Horizontal random flip, will be enabled by default if cropType=Random
+            #hflip=0
+            # Crop scale ratio. Examples: cropRatio=0.9, cropRatio=0.7:0.9. Default: 1.
+            cropRatio=1
+            # Crop scale ratio jitter type.
+            # Possible values: None, UniRatio, UniLength, UniArea. Default: UniRatio
+            jitterType="UniRatio"
+            # Interpolation to use when scaling image to width x height size.
+            # Possible values: nearest, linear, cubic, lanczos. Default: linear.
+            interpolations="Linear"
+            # Stores mean values for each pixel in OpenCV matrix XML format.
+            # meanFile="mean_values.xml"
+		]
+	
+		labels=[
+			labelDim=2
+		]
+	]
+]
+
+#######################################
+#  EDIT CONFIG                        #
+#######################################
+Edit=[
+	action="edit"
+    CurModel=$modelPath$
+    editPath="FPanorama.mel"
+]
+
+#######################################
+#  TEST CONFIG                        #
+#######################################
+Test=[
+
+	action="test"
+    minibatchSize=15
+	
+	reader = [
+		readerType = "ImageReader"
+		file = "Test_b.txt"	
+		randomize="None"
+		
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+            # meanFile="mean_values.xml"
+		]
+	
+		labels=[
+			labelDim=2
+		]
+	]
+
+]
+
+#######################################
+#  OUTPUT CONFIG                      #
+#######################################
+Output=[
+
+	action="write"
+	minibatchSize=15
+	
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+            # meanFile="mean_values.xml"
+		]
+	
+		labels=[
+			labelDim=2
+		]
+	]
+	
+	outputPath = "output_FPanorama.txt"		# dump the output as text
+
+]

@@ -1,0 +1,7 @@
+Open CMD
+
+set PATH=C:\Users\Dunai\cntk\build\x64\release;%PATH%
+
+cd C:\Users\Dunai\Desktop\Test_lab\  #your working directory
+
+cntk configFile=FPanorama.cntk  #your .cntk file

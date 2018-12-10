@@ -1,0 +1,3 @@
+To run it is important that the content of this folder, the Classify.txt file 'from Panoramas2Classify_LowRes', and the Train.txt and Test.txt files from 'MirFlickr_Images' are all in the working directory.
+
+	Script 'MakingSense_ofOutput.m' can be used to visualize images tagged as an specific label after computing your own predictions or to visualize our own by importing 'VPP_Data_RR\Approach 1.5\Log_&_Output\output_MirFlickr.txt.prediction' to the working directory.

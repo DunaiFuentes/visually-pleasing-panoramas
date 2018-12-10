@@ -1,0 +1,88 @@
+run=structute_definition
+	
+structute_definition=[
+
+    ################################
+    # sample and label dimensions  #
+    ################################
+    
+    imageW = 4800
+    imageH = 400  
+    imageCh1 = 3
+    labelDim = 4
+    labelDimFinal = 1
+    
+    features = ImageInput(imageW, imageH, imageCh1, imageLayout=$imageLayout$)
+    featScale = Constant(0.00390625)   #map to 0-1
+    featScaled = Scale(featScale, features)
+    labels = InputValue(labelDim,1)
+    var0 = Constant(0);
+    var1 = Constant(1);
+    var2 = Constant(2);
+    var3 = Constant(3);
+    aux1 = RowStack(var0, var1, var2, var3)
+    labelsFinal = TransposeTimes(aux1,labels)
+        
+    ##########################
+    # Network Structure      #
+    ##########################
+    
+    parmScale = 1
+    
+    # Conv1
+    kW1 = 10
+    hStride1 = 5
+    KH1 = 4
+    vStride1 = 3
+    totalweights = 120  # kW1*kH1*imageCh1
+    cMap1 = 24
+    wScale1 = 10
+    bValue1 = 1
+    conv1_act = ConvReLULayer(featScaled, cMap1, totalweights, kW1, kH1, hStride1, vStride1, , wScale1, bValue1)
+    
+    # pool1
+    pool1W = 7
+    pool1H = 7
+    pool1hStride = 7
+    pool1vStride = 7
+    pool1 = MaxPooling(conv1_act, pool1W, pool1H, pool1hStride, pool1vStride, imageLayout=$imageLayout$)
+    
+    # hidden1
+    finalW = 137 # (((4800 - 10) / 5)+1) / 7
+    finalH = 19  # (((400 - 4) / 3)+1) / 7
+   
+    hiddenOutDim1 = 1000
+    # hiddenOut1 = DNNSigmoidLayer(preDenseDim, hiddenOutDim1, pool1, parmScale)
+    hiddenOut1 = DNNImageSigmoidLayer(finalW, finalH, cMap1, hiddenOutDim1, pool1, parmScale)
+    
+    # Last layer
+    o1 = DNNLayer(hiddenOutDim1, labelDim, hiddenOut1, parmScale)
+    prediction = Softmax(o1)
+    o2 = TransposeTimes(aux1,prediction)
+    
+    
+    MSE = SquareError(labelsFinal, o2)
+    invnumclases = Constant(0.25)
+    sumo2 = SumElements(o2)
+    meano2 = Scale(invnumclases,sumo2)
+    meansquared = Times(meano2,meano2)
+    normo2 = MatrixL2Reg(o2)
+    aux2 = Scale(invnumclases,normo2)
+    var = Minus(aux2,meansquared)
+    ce = CrossEntropyWithSoftmax(labels, o1)
+    err = ClassificationError(labels, o1)
+    
+    weight1 = Constant(1)
+    weightedce = Scale(weight1,ce)
+    minimizationfunction = Plus(MSE,weightedce)
+    weight2 = Constant(1)
+    weightedvar = Scale(weight2,var)
+    minimizationfunction2 = Minus(minimizationfunction,weightedvar)
+    
+      # root nodes
+      FeatureNodes=(features)
+      LabelNodes=(labels)
+      CriteriaNodes=(minimizationfunction2)
+      EvalNodes=(err)
+      OutputNodes=(prediction, o2)
+]

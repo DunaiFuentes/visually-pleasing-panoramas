@@ -1,0 +1,130 @@
+# which commands to run # no dump because ERROR
+command=Train:Test:Classify
+
+#required...
+modelPath="Models/model.dnn"	# where to write the model to
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    # larger values mean more output
+
+#######################################
+#  TRAINING CONFIG                    #
+#######################################
+Train=[
+	action="train"
+	
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "PhotoNet.ndl"
+    ]
+	
+	SGD = [	
+		epochSize=0		            # =0 means size of the training set
+		minibatchSize=10
+		learningRatesPerMB=0.05*2:0.01*5:0.001   # learning rates per MB
+        momentumPerMB = 0.9
+		maxEpochs=15
+        dropoutRate=0.0
+        # L2RegWeight=0.001
+	]
+	
+	# parameter values for the reader
+	reader = [
+		readerType ="ImageReader"
+		file = "Train.txt"
+        randomize="None"            #Auto should be
+		
+		features=[			
+			width=200       #112 for models 1 and 2
+            height=200
+            channels=3
+                     
+            # Below are the optional parameters.
+            # Possible values: Center, Random. Default: Center
+            cropType="Center"
+            # Horizontal random flip, will be enabled by default if cropType=Random
+            hflip=0
+            # Crop scale ratio. Examples: cropRatio=0.9, cropRatio=0.7:0.9. Default: 1.
+            cropRatio=1
+            # Crop scale ratio jitter type.
+            # Possible values: None, UniRatio, UniLength, UniArea. Default: UniRatio
+            jitterType="UniRatio"
+            # Interpolation to use when scaling image to width x height size.
+            # Possible values: nearest, linear, cubic, lanczos. Default: linear.
+            interpolations="Linear"
+            # Stores mean values for each pixel in OpenCV matrix XML format.
+            # meanFile="mean_values.xml"
+		]
+	
+		labels=[
+			labelDim=2
+		]
+	]
+]
+
+#######################################
+#  EDIT CONFIG                        #
+#######################################
+Edit=[
+	action="edit"
+    CurModel=$modelPath$
+    editPath="PhotoNet.mel"
+]
+
+#######################################
+#  TEST CONFIG                        #
+#######################################
+Test=[
+
+	action="test"
+    minibatchSize=10
+	
+	reader = [
+		readerType = "ImageReader"
+		file = "Test.txt"	
+		randomize="None"
+		
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+	
+		labels=[
+			labelDim=2
+		]
+	]
+
+]
+
+#######################################
+#  OUTPUT CONFIG                      #
+#######################################
+Classify=[
+
+	action="write"
+    minibatchSize=10
+	
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+	
+		labels=[
+			labelDim=2
+		]
+	]
+	
+	outputPath = "output_PhotoNet.txt"		# dump the output as text
+
+]

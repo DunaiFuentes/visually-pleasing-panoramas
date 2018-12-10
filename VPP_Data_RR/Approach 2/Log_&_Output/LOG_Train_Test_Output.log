@@ -1,0 +1,792 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Mar  4 2016 17:16:23
+		Last modified date: Thu Mar  3 22:34:01 2016
+		Build type: Release
+		Build target: GPU
+		With 1bit-SGD: yes
+		CUDA_PATH: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5
+		CUB_PATH: C:\src\cub-1.4.1
+		CUDNN_PATH: C:\src\cudnn-4.0\cuda
+		Build Branch: master
+		Build SHA1: 7c811de9e33d0184fdf340cd79f4f17faacf41cc (modified)
+		Built by Dunai on Lenovo-Dunai
+		Build Path: C:\Users\Dunai\CNTK\Source\CNTK\
+-------------------------------------------------------------------
+running on Lenovo-Dunai at 2016/05/24 13:29:35
+command line: 
+cntk  configFile=FPanorama.cntk
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG (VARIABLES NOT RESOLVED) >>>>>>>>>>>>>>>>>>>>
+command=Train:Test:Output
+modelPath="Models/model.dnn"	
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    
+Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "FPanorama.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=15
+learningRatesPerMB=0.01*3:0.001	    
+        momentumPerMB = 0.9
+		maxEpochs=15
+        dropoutRate=0.0
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train_b.txt"
+        randomize="Auto"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+]
+Edit=[
+	action="edit"
+    CurModel=$modelPath$
+    editPath="FPanorama.mel"
+]
+Test=[
+	action="test"
+    minibatchSize=15
+	reader = [
+		readerType = "ImageReader"
+		file = "Test_b.txt"	
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+]
+Output=[
+	action="write"
+	minibatchSize=15
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+outputPath = "output_FPanorama.txt"		
+]
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG (VARIABLES NOT RESOLVED)  <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+command=Train:Test:Output
+modelPath="Models/model.dnn"	
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    
+Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "FPanorama.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=15
+learningRatesPerMB=0.01*3:0.001	    
+        momentumPerMB = 0.9
+		maxEpochs=15
+        dropoutRate=0.0
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train_b.txt"
+        randomize="Auto"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+]
+Edit=[
+	action="edit"
+    CurModel=Models/model.dnn
+    editPath="FPanorama.mel"
+]
+Test=[
+	action="test"
+    minibatchSize=15
+	reader = [
+		readerType = "ImageReader"
+		file = "Test_b.txt"	
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+]
+Output=[
+	action="write"
+	minibatchSize=15
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+outputPath = "output_FPanorama.txt"		
+]
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> PROCESSED CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+configparameters: FPanorama.cntk:command=Train:Test:Output
+configparameters: FPanorama.cntk:deviceId=0
+configparameters: FPanorama.cntk:Edit=[
+	action="edit"
+    CurModel=Models/model.dnn
+    editPath="FPanorama.mel"
+]
+
+configparameters: FPanorama.cntk:imageLayout=cudnn
+configparameters: FPanorama.cntk:modelPath=Models/model.dnn
+configparameters: FPanorama.cntk:Output=[
+	action="write"
+	minibatchSize=15
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+outputPath = "output_FPanorama.txt"		
+]
+
+configparameters: FPanorama.cntk:precision=float
+configparameters: FPanorama.cntk:stderr=LOG
+configparameters: FPanorama.cntk:Test=[
+	action="test"
+    minibatchSize=15
+	reader = [
+		readerType = "ImageReader"
+		file = "Test_b.txt"	
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+]
+
+configparameters: FPanorama.cntk:traceLevel=1
+configparameters: FPanorama.cntk:Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "FPanorama.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=15
+learningRatesPerMB=0.01*3:0.001	    
+        momentumPerMB = 0.9
+		maxEpochs=15
+        dropoutRate=0.0
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train_b.txt"
+        randomize="Auto"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=2
+		]
+	]
+]
+
+<<<<<<<<<<<<<<<<<<<< PROCESSED CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+Commands: Train Test Output 
+Precision = "float"
+CNTKModelPath: Models/model.dnn
+CNTKCommandTrainInfo: Train : 15
+CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 15
+
+##############################################################################
+#                                                                            #
+# Action "train"                                                             #
+#                                                                            #
+##############################################################################
+
+CNTKCommandTrainBegin: Train
+NDLBuilder Using GPU 0
+Microsoft::MSR::CNTK::GPUMatrix<ElemType>::SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+
+Post-processing network...
+
+3 roots:
+	ce = CrossEntropyWithSoftmax
+	err = ErrorPrediction
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for ce CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 22 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+Validating network. 13 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+9 out of 22 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+
+SGD using GPU 0.
+
+Training criterion node(s):
+	ce = CrossEntropyWithSoftmax
+
+Evaluation criterion node(s):
+	err = ErrorPrediction
+
+
+Allocating matrices for forward and/or backward propagation.
+No PreCompute nodes found, skipping PreCompute step.
+
+Starting Epoch 1: learning rate per sample = 0.000667  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 1 of 15]-Minibatch[   1-  10]: SamplesSeen = 150; TrainLossPerSample =  0.72425598; EvalErr[0]PerSample = 0.50666667; TotalTime = 2.7249s; SamplesPerSecond = 55.0
+ Epoch[ 1 of 15]-Minibatch[  11-  20]: SamplesSeen = 150; TrainLossPerSample =  0.70941661; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.2957s; SamplesPerSecond = 115.8
+Finished Epoch[ 1 of 15]: [Training Set] TrainLossPerSample = 0.71656483; TotalSamplesSeen = 317; EvalErrPerSample = 0.48895901; AvgLearningRatePerSample = 0.00066666666; EpochTime=4.23141
+SGD: Saving checkpoint model 'Models/model.dnn.1'
+
+Starting Epoch 2: learning rate per sample = 0.000667  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 2 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.64117905; EvalErr[0]PerSample = 0.35333333; TotalTime = 1.3823s; SamplesPerSecond = 108.5
+ Epoch[ 2 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.68730759; EvalErr[0]PerSample = 0.47333333; TotalTime = 1.3088s; SamplesPerSecond = 114.6
+Finished Epoch[ 2 of 15]: [Training Set] TrainLossPerSample = 0.66062522; TotalSamplesSeen = 634; EvalErrPerSample = 0.41009465; AvgLearningRatePerSample = 0.00066666666; EpochTime=2.90223
+SGD: Saving checkpoint model 'Models/model.dnn.2'
+
+Starting Epoch 3: learning rate per sample = 0.000667  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 3 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.62373886; EvalErr[0]PerSample = 0.28000000; TotalTime = 17.0945s; SamplesPerSecond = 8.8
+ Epoch[ 3 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.63363388; EvalErr[0]PerSample = 0.39333333; TotalTime = 7.1699s; SamplesPerSecond = 20.9
+Finished Epoch[ 3 of 15]: [Training Set] TrainLossPerSample = 0.62839782; TotalSamplesSeen = 951; EvalErrPerSample = 0.33753943; AvgLearningRatePerSample = 0.00066666666; EpochTime=24.9731
+SGD: Saving checkpoint model 'Models/model.dnn.3'
+
+Starting Epoch 4: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 4 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.83401693; EvalErr[0]PerSample = 0.56000000; TotalTime = 11.1513s; SamplesPerSecond = 13.5
+ Epoch[ 4 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.59495290; EvalErr[0]PerSample = 0.33333333; TotalTime = 4.7480s; SamplesPerSecond = 31.6
+Finished Epoch[ 4 of 15]: [Training Set] TrainLossPerSample = 0.7111358; TotalSamplesSeen = 1268; EvalErrPerSample = 0.44794953; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=17.0347
+SGD: Saving checkpoint model 'Models/model.dnn.4'
+
+Starting Epoch 5: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 5 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.58851044; EvalErr[0]PerSample = 0.28000000; TotalTime = 2.0989s; SamplesPerSecond = 71.5
+ Epoch[ 5 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.60455556; EvalErr[0]PerSample = 0.31333333; TotalTime = 2.4609s; SamplesPerSecond = 61.0
+Finished Epoch[ 5 of 15]: [Training Set] TrainLossPerSample = 0.59742558; TotalSamplesSeen = 1585; EvalErrPerSample = 0.2933754; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=4.90737
+SGD: Saving checkpoint model 'Models/model.dnn.5'
+
+Starting Epoch 6: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 6 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.58397054; EvalErr[0]PerSample = 0.23333333; TotalTime = 1.9635s; SamplesPerSecond = 76.4
+ Epoch[ 6 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.59465413; EvalErr[0]PerSample = 0.27333333; TotalTime = 2.0499s; SamplesPerSecond = 73.2
+Finished Epoch[ 6 of 15]: [Training Set] TrainLossPerSample = 0.58961934; TotalSamplesSeen = 1902; EvalErrPerSample = 0.25552052; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=4.22508
+SGD: Saving checkpoint model 'Models/model.dnn.6'
+
+Starting Epoch 7: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 7 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.57480230; EvalErr[0]PerSample = 0.21333333; TotalTime = 1.7136s; SamplesPerSecond = 87.5
+ Epoch[ 7 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.58746730; EvalErr[0]PerSample = 0.24666667; TotalTime = 1.3847s; SamplesPerSecond = 108.3
+Finished Epoch[ 7 of 15]: [Training Set] TrainLossPerSample = 0.58149487; TotalSamplesSeen = 2219; EvalErrPerSample = 0.22397476; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=3.30999
+SGD: Saving checkpoint model 'Models/model.dnn.7'
+
+Starting Epoch 8: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 8 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.56521311; EvalErr[0]PerSample = 0.18000000; TotalTime = 1.4338s; SamplesPerSecond = 104.6
+ Epoch[ 8 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.58290131; EvalErr[0]PerSample = 0.26000000; TotalTime = 1.5623s; SamplesPerSecond = 96.0
+Finished Epoch[ 8 of 15]: [Training Set] TrainLossPerSample = 0.57746458; TotalSamplesSeen = 2536; EvalErrPerSample = 0.22712934; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=3.20779
+SGD: Saving checkpoint model 'Models/model.dnn.8'
+
+Starting Epoch 9: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[ 9 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.58558238; EvalErr[0]PerSample = 0.27333333; TotalTime = 1.6370s; SamplesPerSecond = 91.6
+ Epoch[ 9 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.57731822; EvalErr[0]PerSample = 0.23333333; TotalTime = 1.3464s; SamplesPerSecond = 111.4
+Finished Epoch[ 9 of 15]: [Training Set] TrainLossPerSample = 0.57780814; TotalSamplesSeen = 2853; EvalErrPerSample = 0.24290222; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=3.1946
+SGD: Saving checkpoint model 'Models/model.dnn.9'
+
+Starting Epoch 10: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[10 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.57440882; EvalErr[0]PerSample = 0.19333333; TotalTime = 1.9646s; SamplesPerSecond = 76.4
+ Epoch[10 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.55884181; EvalErr[0]PerSample = 0.20000000; TotalTime = 1.5619s; SamplesPerSecond = 96.0
+Finished Epoch[10 of 15]: [Training Set] TrainLossPerSample = 0.56698549; TotalSamplesSeen = 3170; EvalErrPerSample = 0.20189275; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=3.76905
+SGD: Saving checkpoint model 'Models/model.dnn.10'
+
+Starting Epoch 11: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[11 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.56786260; EvalErr[0]PerSample = 0.28666667; TotalTime = 1.4727s; SamplesPerSecond = 101.9
+ Epoch[11 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.56671850; EvalErr[0]PerSample = 0.20000000; TotalTime = 1.3932s; SamplesPerSecond = 107.7
+Finished Epoch[11 of 15]: [Training Set] TrainLossPerSample = 0.56804448; TotalSamplesSeen = 3487; EvalErrPerSample = 0.24921136; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=3.07729
+SGD: Saving checkpoint model 'Models/model.dnn.11'
+
+Starting Epoch 12: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[12 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.57748652; EvalErr[0]PerSample = 0.26666667; TotalTime = 3.7486s; SamplesPerSecond = 40.0
+ Epoch[12 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.55026148; EvalErr[0]PerSample = 0.19333333; TotalTime = 2.1526s; SamplesPerSecond = 69.7
+Finished Epoch[12 of 15]: [Training Set] TrainLossPerSample = 0.56188959; TotalSamplesSeen = 3804; EvalErrPerSample = 0.23028392; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=6.1124
+SGD: Saving checkpoint model 'Models/model.dnn.12'
+
+Starting Epoch 13: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[13 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.54874441; EvalErr[0]PerSample = 0.20000000; TotalTime = 1.7010s; SamplesPerSecond = 88.2
+ Epoch[13 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.56779124; EvalErr[0]PerSample = 0.22000000; TotalTime = 1.6165s; SamplesPerSecond = 92.8
+Finished Epoch[13 of 15]: [Training Set] TrainLossPerSample = 0.55788285; TotalSamplesSeen = 4121; EvalErrPerSample = 0.20504732; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=3.66198
+SGD: Saving checkpoint model 'Models/model.dnn.13'
+
+Starting Epoch 14: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[14 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.54008540; EvalErr[0]PerSample = 0.19333333; TotalTime = 2.0644s; SamplesPerSecond = 72.7
+ Epoch[14 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.57049555; EvalErr[0]PerSample = 0.20000000; TotalTime = 2.8442s; SamplesPerSecond = 52.7
+Finished Epoch[14 of 15]: [Training Set] TrainLossPerSample = 0.55439711; TotalSamplesSeen = 4438; EvalErrPerSample = 0.1955836; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=5.12054
+SGD: Saving checkpoint model 'Models/model.dnn.14'
+
+Starting Epoch 15: learning rate per sample = 0.000067  effective momentum = 0.900000  momentum as time constant = 142.4 samples
+
+Starting minibatch loop.
+ Epoch[15 of 15]-Minibatch[   1-  10, 50.00%]: SamplesSeen = 150; TrainLossPerSample =  0.54191676; EvalErr[0]PerSample = 0.20000000; TotalTime = 2.2144s; SamplesPerSecond = 67.7
+ Epoch[15 of 15]-Minibatch[  11-  20, 100.00%]: SamplesSeen = 150; TrainLossPerSample =  0.56530777; EvalErr[0]PerSample = 0.24666667; TotalTime = 1.8425s; SamplesPerSecond = 81.4
+Finished Epoch[15 of 15]: [Training Set] TrainLossPerSample = 0.5529359; TotalSamplesSeen = 4755; EvalErrPerSample = 0.22712934; AvgLearningRatePerSample = 6.6666667e-005; EpochTime=4.26838
+SGD: Saving checkpoint model 'Models/model.dnn'
+CNTKCommandTrainEnd: Train
+
+Action "train" complete.
+
+
+##############################################################################
+#                                                                            #
+# Action "test"                                                              #
+#                                                                            #
+##############################################################################
+
+
+Post-processing network...
+
+3 roots:
+	ce = CrossEntropyWithSoftmax
+	err = ErrorPrediction
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for ce CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 22 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+Validating network. 13 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+9 out of 22 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+evalNodeNames are not specified, using all the default evalnodes and training criterion nodes.
+
+
+Allocating matrices for forward and/or backward propagation.
+Minibatch[1-6]: SamplesSeen = 80    err: ErrorPrediction/Sample = 0.4875    ce: CrossEntropyWithSoftmax/Sample = 0.70520507    
+Final Results: Minibatch[1-6]: SamplesSeen = 80    err: ErrorPrediction/Sample = 0.4875    ce: CrossEntropyWithSoftmax/Sample = 0.70520507    Perplexity = 2.0242618    
+
+Action "test" complete.
+
+
+##############################################################################
+#                                                                            #
+# Action "write"                                                             #
+#                                                                            #
+##############################################################################
+
+
+Post-processing network...
+
+3 roots:
+	ce = CrossEntropyWithSoftmax
+	err = ErrorPrediction
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for ce CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 22 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+Validating network. 13 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [2 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [2 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 49 x 49 x 36]
+Validating --> conv1_act.convW = LearnableParameter -> [36 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[36 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 36]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 36 x * {W=196, H=36, C=196}], conv1_act.convB[1 x 1 x 36]) -> [196 x 196 x 36 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [196 x 196 x 36 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 36 x * {W=196, H=36, C=196}]) -> [49 x 49 x 36 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 49 x 49 x 36], pool1[49 x 49 x 36 x * {W=49, H=36, C=49}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[2 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [2 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [2 x 1]
+Validating --> o1.z = Plus(o1.t[2 x 1 x *], o1.b[2 x 1]) -> [2 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[2 x 1 x *], o1.z[2 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[2 x 1 x *]) -> [2 x 1 x *]
+
+9 out of 22 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+OutputNodeNames are not specified, using the default outputnodes.
+
+
+Allocating matrices for forward and/or backward propagation.
+Minibatch[1]: ActualMBSize = 15
+Minibatch[2]: ActualMBSize = 15
+Minibatch[3]: ActualMBSize = 15
+Minibatch[4]: ActualMBSize = 15
+Minibatch[5]: ActualMBSize = 15
+Minibatch[6]: ActualMBSize = 15
+Minibatch[7]: ActualMBSize = 15
+Minibatch[8]: ActualMBSize = 15
+Minibatch[9]: ActualMBSize = 15
+Minibatch[10]: ActualMBSize = 15
+Minibatch[11]: ActualMBSize = 15
+Minibatch[12]: ActualMBSize = 15
+Minibatch[13]: ActualMBSize = 15
+Minibatch[14]: ActualMBSize = 15
+Minibatch[15]: ActualMBSize = 15
+Minibatch[16]: ActualMBSize = 15
+Minibatch[17]: ActualMBSize = 15
+Minibatch[18]: ActualMBSize = 15
+Minibatch[19]: ActualMBSize = 15
+Minibatch[20]: ActualMBSize = 15
+Minibatch[21]: ActualMBSize = 15
+Minibatch[22]: ActualMBSize = 15
+Minibatch[23]: ActualMBSize = 15
+Minibatch[24]: ActualMBSize = 15
+Minibatch[25]: ActualMBSize = 15
+Minibatch[26]: ActualMBSize = 15
+Minibatch[27]: ActualMBSize = 15
+Minibatch[28]: ActualMBSize = 15
+Minibatch[29]: ActualMBSize = 15
+Minibatch[30]: ActualMBSize = 15
+Minibatch[31]: ActualMBSize = 15
+Minibatch[32]: ActualMBSize = 15
+Minibatch[33]: ActualMBSize = 15
+Minibatch[34]: ActualMBSize = 15
+Minibatch[35]: ActualMBSize = 15
+Minibatch[36]: ActualMBSize = 15
+Minibatch[37]: ActualMBSize = 15
+Minibatch[38]: ActualMBSize = 15
+Minibatch[39]: ActualMBSize = 15
+Minibatch[40]: ActualMBSize = 15
+Minibatch[41]: ActualMBSize = 15
+Minibatch[42]: ActualMBSize = 15
+Minibatch[43]: ActualMBSize = 15
+Minibatch[44]: ActualMBSize = 15
+Minibatch[45]: ActualMBSize = 15
+Minibatch[46]: ActualMBSize = 15
+Minibatch[47]: ActualMBSize = 15
+Minibatch[48]: ActualMBSize = 15
+Minibatch[49]: ActualMBSize = 15
+Minibatch[50]: ActualMBSize = 15
+Minibatch[51]: ActualMBSize = 15
+Minibatch[52]: ActualMBSize = 15
+Minibatch[53]: ActualMBSize = 15
+Minibatch[54]: ActualMBSize = 15
+Minibatch[55]: ActualMBSize = 15
+Minibatch[56]: ActualMBSize = 15
+Minibatch[57]: ActualMBSize = 15
+Minibatch[58]: ActualMBSize = 15
+Minibatch[59]: ActualMBSize = 15
+Minibatch[60]: ActualMBSize = 15
+Minibatch[61]: ActualMBSize = 12
+Written to output_FPanorama.txt*
+Total Samples Evaluated = 912
+
+Action "write" complete.
+
+COMPLETED

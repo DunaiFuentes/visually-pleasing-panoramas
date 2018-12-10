@@ -1,0 +1,601 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Mar  4 2016 17:16:23
+		Last modified date: Thu Mar  3 22:34:01 2016
+		Build type: Release
+		Build target: GPU
+		With 1bit-SGD: yes
+		CUDA_PATH: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5
+		CUB_PATH: C:\src\cub-1.4.1
+		CUDNN_PATH: C:\src\cudnn-4.0\cuda
+		Build Branch: master
+		Build SHA1: 7c811de9e33d0184fdf340cd79f4f17faacf41cc (modified)
+		Built by Dunai on Lenovo-Dunai
+		Build Path: C:\Users\Dunai\CNTK\Source\CNTK\
+-------------------------------------------------------------------
+running on Lenovo-Dunai at 2016/05/24 18:27:59
+command line: 
+cntk  configFile=Curated.cntk
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG (VARIABLES NOT RESOLVED) >>>>>>>>>>>>>>>>>>>>
+command=Train:Test:Classify
+modelPath="Models/model.dnn"	
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    
+Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "Curated.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=6
+learningRatesPerMB=0.005*2:0.001*18:0.0005   
+        momentumPerMB = 0.9
+		maxEpochs=30
+        dropoutRate=0.0
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train5.txt"
+randomize="None"            
+		features=[			
+width=4800       
+            height=400
+channels=3      
+            cropType="Center"
+            hflip=0
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Edit=[
+	action="edit"
+    CurModel=$modelPath$
+    editPath="PhotoNet.mel"
+]
+Test=[
+	action="test"
+    minibatchSize=5
+	reader = [
+		readerType = "ImageReader"
+		file = "Test5.txt"	
+		randomize="None"
+		features=[			
+			width=4800
+            height=400
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Classify=[
+	action="write"
+    minibatchSize=5
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify5.txt"
+		randomize="None"
+		features=[			
+			width=4800
+            height=400
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+outputPath = "output_Curated.txt"		
+]
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG (VARIABLES NOT RESOLVED)  <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+command=Train:Test:Classify
+modelPath="Models/model.dnn"	
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    
+Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "Curated.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=6
+learningRatesPerMB=0.005*2:0.001*18:0.0005   
+        momentumPerMB = 0.9
+		maxEpochs=30
+        dropoutRate=0.0
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train5.txt"
+randomize="None"            
+		features=[			
+width=4800       
+            height=400
+channels=3      
+            cropType="Center"
+            hflip=0
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Edit=[
+	action="edit"
+    CurModel=Models/model.dnn
+    editPath="PhotoNet.mel"
+]
+Test=[
+	action="test"
+    minibatchSize=5
+	reader = [
+		readerType = "ImageReader"
+		file = "Test5.txt"	
+		randomize="None"
+		features=[			
+			width=4800
+            height=400
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Classify=[
+	action="write"
+    minibatchSize=5
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify5.txt"
+		randomize="None"
+		features=[			
+			width=4800
+            height=400
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+outputPath = "output_Curated.txt"		
+]
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> PROCESSED CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+configparameters: Curated.cntk:Classify=[
+	action="write"
+    minibatchSize=5
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify5.txt"
+		randomize="None"
+		features=[			
+			width=4800
+            height=400
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+outputPath = "output_Curated.txt"		
+]
+
+configparameters: Curated.cntk:command=Train:Test:Classify
+configparameters: Curated.cntk:deviceId=0
+configparameters: Curated.cntk:Edit=[
+	action="edit"
+    CurModel=Models/model.dnn
+    editPath="PhotoNet.mel"
+]
+
+configparameters: Curated.cntk:imageLayout=cudnn
+configparameters: Curated.cntk:modelPath=Models/model.dnn
+configparameters: Curated.cntk:precision=float
+configparameters: Curated.cntk:stderr=LOG
+configparameters: Curated.cntk:Test=[
+	action="test"
+    minibatchSize=5
+	reader = [
+		readerType = "ImageReader"
+		file = "Test5.txt"	
+		randomize="None"
+		features=[			
+			width=4800
+            height=400
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+
+configparameters: Curated.cntk:traceLevel=1
+configparameters: Curated.cntk:Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "Curated.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=6
+learningRatesPerMB=0.005*2:0.001*18:0.0005   
+        momentumPerMB = 0.9
+		maxEpochs=30
+        dropoutRate=0.0
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train5.txt"
+randomize="None"            
+		features=[			
+width=4800       
+            height=400
+channels=3      
+            cropType="Center"
+            hflip=0
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+
+<<<<<<<<<<<<<<<<<<<< PROCESSED CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+Commands: Train Test Classify 
+Precision = "float"
+CNTKModelPath: Models/model.dnn
+CNTKCommandTrainInfo: Train : 30
+CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 30
+
+##############################################################################
+#                                                                            #
+# Action "train"                                                             #
+#                                                                            #
+##############################################################################
+
+CNTKCommandTrainBegin: Train
+NDLBuilder Using GPU 0
+Microsoft::MSR::CNTK::GPUMatrix<ElemType>::SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+
+Post-processing network...
+
+4 roots:
+	err = ErrorPrediction
+	minimizationfunction2 = Minus
+	o2 = TransposeTimes
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for minimizationfunction2 Minus operation
+FormNestedNetwork: WARNING: Was called twice for o2 TransposeTimes operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 43 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 137 x 19 x 24]
+Validating --> conv1_act.convW = LearnableParameter -> [24 x 120]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [4800 x 400 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[4800 x 400 x 3 x * {W=400, H=3, C=4800}]) -> [4800 x 400 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[24 x 120], featScaled[4800 x 400 x 3 x * {W=400, H=3, C=4800}]) -> [959 x 133 x 24 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 24]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[959 x 133 x 24 x * {W=133, H=24, C=959}], conv1_act.convB[1 x 1 x 24]) -> [959 x 133 x 24 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[959 x 133 x 24 x * {W=133, H=24, C=959}]) -> [959 x 133 x 24 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[959 x 133 x 24 x * {W=133, H=24, C=959}]) -> [137 x 19 x 24 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 137 x 19 x 24], pool1[137 x 19 x 24 x * {W=19, H=24, C=137}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> var0 = LearnableParameter -> [1 x 1]
+Validating --> var1 = LearnableParameter -> [1 x 1]
+Validating --> var2 = LearnableParameter -> [1 x 1]
+Validating --> var3 = LearnableParameter -> [1 x 1]
+Validating --> aux1 = RowStack(var0[1 x 1], var1[1 x 1], var2[1 x 1], var3[1 x 1]) -> [4 x 1]
+Validating --> labelsFinal = TransposeTimes(aux1[4 x 1], labels[4 x 1 x *]) -> [1 x 1 x *]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+Validating --> o2 = TransposeTimes(aux1[4 x 1], prediction[4 x 1 x *]) -> [1 x 1 x *]
+Validating --> MSE = SquareError(labelsFinal[1 x 1 x *], o2[1 x 1 x *]) -> [1]
+Validating --> weight1 = LearnableParameter -> [1 x 1]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> weightedce = ElementTimes(weight1[1 x 1], ce[1]) -> [1 x 1]
+Validating --> minimizationfunction = Plus(MSE[1], weightedce[1 x 1]) -> [1 x 1]
+Validating --> weight2 = LearnableParameter -> [1 x 1]
+Validating --> invnumclases = LearnableParameter -> [1 x 1]
+Validating --> normo2 = MatrixL2Reg(o2[1 x 1 x *]) -> [1]
+Validating --> aux2 = ElementTimes(invnumclases[1 x 1], normo2[1]) -> [1 x 1]
+Validating --> sumo2 = SumElements(o2[1 x 1 x *]) -> [1]
+Validating --> meano2 = ElementTimes(invnumclases[1 x 1], sumo2[1]) -> [1 x 1]
+Validating --> meansquared = Times(meano2[1 x 1], meano2[1 x 1]) -> [1 x 1]
+Validating --> var = Minus(aux2[1 x 1], meansquared[1 x 1]) -> [1 x 1]
+Validating --> weightedvar = ElementTimes(weight2[1 x 1], var[1 x 1]) -> [1 x 1]
+Validating --> minimizationfunction2 = Minus(minimizationfunction[1 x 1], weightedvar[1 x 1]) -> [1 x 1]
+
+Validating network. 27 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 137 x 19 x 24]
+Validating --> conv1_act.convW = LearnableParameter -> [24 x 120]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [4800 x 400 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[4800 x 400 x 3 x * {W=400, H=3, C=4800}]) -> [4800 x 400 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[24 x 120], featScaled[4800 x 400 x 3 x * {W=400, H=3, C=4800}]) -> [959 x 133 x 24 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 24]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[959 x 133 x 24 x * {W=133, H=24, C=959}], conv1_act.convB[1 x 1 x 24]) -> [959 x 133 x 24 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[959 x 133 x 24 x * {W=133, H=24, C=959}]) -> [959 x 133 x 24 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[959 x 133 x 24 x * {W=133, H=24, C=959}]) -> [137 x 19 x 24 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 137 x 19 x 24], pool1[137 x 19 x 24 x * {W=19, H=24, C=137}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> var0 = LearnableParameter -> [1 x 1]
+Validating --> var1 = LearnableParameter -> [1 x 1]
+Validating --> var2 = LearnableParameter -> [1 x 1]
+Validating --> var3 = LearnableParameter -> [1 x 1]
+Validating --> aux1 = RowStack(var0[1 x 1], var1[1 x 1], var2[1 x 1], var3[1 x 1]) -> [4 x 1]
+Validating --> labelsFinal = TransposeTimes(aux1[4 x 1], labels[4 x 1 x *]) -> [1 x 1 x *]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+Validating --> o2 = TransposeTimes(aux1[4 x 1], prediction[4 x 1 x *]) -> [1 x 1 x *]
+Validating --> MSE = SquareError(labelsFinal[1 x 1 x *], o2[1 x 1 x *]) -> [1]
+Validating --> weight1 = LearnableParameter -> [1 x 1]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> weightedce = ElementTimes(weight1[1 x 1], ce[1]) -> [1 x 1]
+Validating --> minimizationfunction = Plus(MSE[1], weightedce[1 x 1]) -> [1 x 1]
+Validating --> weight2 = LearnableParameter -> [1 x 1]
+Validating --> invnumclases = LearnableParameter -> [1 x 1]
+Validating --> normo2 = MatrixL2Reg(o2[1 x 1 x *]) -> [1]
+Validating --> aux2 = ElementTimes(invnumclases[1 x 1], normo2[1]) -> [1 x 1]
+Validating --> sumo2 = SumElements(o2[1 x 1 x *]) -> [1]
+Validating --> meano2 = ElementTimes(invnumclases[1 x 1], sumo2[1]) -> [1 x 1]
+Validating --> meansquared = Times(meano2[1 x 1], meano2[1 x 1]) -> [1 x 1]
+Validating --> var = Minus(aux2[1 x 1], meansquared[1 x 1]) -> [1 x 1]
+Validating --> weightedvar = ElementTimes(weight2[1 x 1], var[1 x 1]) -> [1 x 1]
+Validating --> minimizationfunction2 = Minus(minimizationfunction[1 x 1], weightedvar[1 x 1]) -> [1 x 1]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 1000]
+Validating --> hiddenOut1.W = LearnableParameter -> [1000 x 137 x 19 x 24]
+Validating --> conv1_act.convW = LearnableParameter -> [24 x 120]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [4800 x 400 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[4800 x 400 x 3 x * {W=400, H=3, C=4800}]) -> [4800 x 400 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[24 x 120], featScaled[4800 x 400 x 3 x * {W=400, H=3, C=4800}]) -> [959 x 133 x 24 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 24]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[959 x 133 x 24 x * {W=133, H=24, C=959}], conv1_act.convB[1 x 1 x 24]) -> [959 x 133 x 24 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[959 x 133 x 24 x * {W=133, H=24, C=959}]) -> [959 x 133 x 24 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[959 x 133 x 24 x * {W=133, H=24, C=959}]) -> [137 x 19 x 24 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[1000 x 137 x 19 x 24], pool1[137 x 19 x 24 x * {W=19, H=24, C=137}]) -> [1000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [1000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[1000 x *], hiddenOut1.b[1000 x 1]) -> [1000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[1000 x 1 x *]) -> [1000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 1000], hiddenOut1.y[1000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> var0 = LearnableParameter -> [1 x 1]
+Validating --> var1 = LearnableParameter -> [1 x 1]
+Validating --> var2 = LearnableParameter -> [1 x 1]
+Validating --> var3 = LearnableParameter -> [1 x 1]
+Validating --> aux1 = RowStack(var0[1 x 1], var1[1 x 1], var2[1 x 1], var3[1 x 1]) -> [4 x 1]
+Validating --> labelsFinal = TransposeTimes(aux1[4 x 1], labels[4 x 1 x *]) -> [1 x 1 x *]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+Validating --> o2 = TransposeTimes(aux1[4 x 1], prediction[4 x 1 x *]) -> [1 x 1 x *]
+Validating --> MSE = SquareError(labelsFinal[1 x 1 x *], o2[1 x 1 x *]) -> [1]
+Validating --> weight1 = LearnableParameter -> [1 x 1]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> weightedce = ElementTimes(weight1[1 x 1], ce[1]) -> [1 x 1]
+Validating --> minimizationfunction = Plus(MSE[1], weightedce[1 x 1]) -> [1 x 1]
+Validating --> weight2 = LearnableParameter -> [1 x 1]
+Validating --> invnumclases = LearnableParameter -> [1 x 1]
+Validating --> normo2 = MatrixL2Reg(o2[1 x 1 x *]) -> [1]
+Validating --> aux2 = ElementTimes(invnumclases[1 x 1], normo2[1]) -> [1 x 1]
+Validating --> sumo2 = SumElements(o2[1 x 1 x *]) -> [1]
+Validating --> meano2 = ElementTimes(invnumclases[1 x 1], sumo2[1]) -> [1 x 1]
+Validating --> meansquared = Times(meano2[1 x 1], meano2[1 x 1]) -> [1 x 1]
+Validating --> var = Minus(aux2[1 x 1], meansquared[1 x 1]) -> [1 x 1]
+Validating --> weightedvar = ElementTimes(weight2[1 x 1], var[1 x 1]) -> [1 x 1]
+Validating --> minimizationfunction2 = Minus(minimizationfunction[1 x 1], weightedvar[1 x 1]) -> [1 x 1]
+
+28 out of 43 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+
+SGD using GPU 0.
+
+Training criterion node(s):
+	minimizationfunction2 = Minus
+
+Evaluation criterion node(s):
+	err = ErrorPrediction
+
+
+Allocating matrices for forward and/or backward propagation.
+No PreCompute nodes found, skipping PreCompute step.
+
+Starting Epoch 1: learning rate per sample = 0.000833  effective momentum = 0.900000  momentum as time constant = 56.9 samples
+
+Starting minibatch loop.
+Premature end of JPEG file
+ Epoch[ 1 of 30]-Minibatch[   1-  10]: SamplesSeen = 60; TrainLossPerSample =  2.70769577; EvalErr[0]PerSample = 0.63333333; TotalTime = 5.6732s; SamplesPerSecond = 10.6
+ Epoch[ 1 of 30]-Minibatch[  11-  20]: SamplesSeen = 60; TrainLossPerSample =  2.99236526; EvalErr[0]PerSample = 0.70000000; TotalTime = 6.5135s; SamplesPerSecond = 9.2
+ Epoch[ 1 of 30]-Minibatch[  21-  30]: SamplesSeen = 60; TrainLossPerSample =  2.78154348; EvalErr[0]PerSample = 0.70000000; TotalTime = 4.1713s; SamplesPerSecond = 14.4
+Premature end of JPEG file
+ Epoch[ 1 of 30]-Minibatch[  31-  40]: SamplesSeen = 60; TrainLossPerSample =  2.70430044; EvalErr[0]PerSample = 0.65000000; TotalTime = 4.2445s; SamplesPerSecond = 14.1
+ Epoch[ 1 of 30]-Minibatch[  41-  50]: SamplesSeen = 60; TrainLossPerSample =  2.60412089; EvalErr[0]PerSample = 0.81666667; TotalTime = 4.0705s; SamplesPerSecond = 14.7
+Premature end of JPEG file
+ Epoch[ 1 of 30]-Minibatch[  51-  60]: SamplesSeen = 60; TrainLossPerSample =  2.43128560; EvalErr[0]PerSample = 0.66666667; TotalTime = 4.0025s; SamplesPerSecond = 15.0
+ Epoch[ 1 of 30]-Minibatch[  61-  70]: SamplesSeen = 60; TrainLossPerSample =  2.54821370; EvalErr[0]PerSample = 0.63333333; TotalTime = 4.2478s; SamplesPerSecond = 14.1
+ Epoch[ 1 of 30]-Minibatch[  71-  80]: SamplesSeen = 60; TrainLossPerSample =  2.47621053; EvalErr[0]PerSample = 0.80000000; TotalTime = 3.8479s; SamplesPerSecond = 15.6
+ Epoch[ 1 of 30]-Minibatch[  81-  90]: SamplesSeen = 60; TrainLossPerSample =  2.11201986; EvalErr[0]PerSample = 0.56666667; TotalTime = 3.9259s; SamplesPerSecond = 15.3
+ Epoch[ 1 of 30]-Minibatch[  91- 100]: SamplesSeen = 60; TrainLossPerSample =  2.06362712; EvalErr[0]PerSample = 0.50000000; TotalTime = 3.8109s; SamplesPerSecond = 15.7
+WARNING: The same matrix with dim [1, 1] has been transferred between different devices for 20 times.
+ Epoch[ 1 of 30]-Minibatch[ 101- 110]: SamplesSeen = 60; TrainLossPerSample =  2.39351807; EvalErr[0]PerSample = 0.65000000; TotalTime = 3.9954s; SamplesPerSecond = 15.0
+ Epoch[ 1 of 30]-Minibatch[ 111- 120]: SamplesSeen = 60; TrainLossPerSample =  1.90062459; EvalErr[0]PerSample = 0.46666667; TotalTime = 4.1757s; SamplesPerSecond = 14.4
+Premature end of JPEG file
+ Epoch[ 1 of 30]-Minibatch[ 121- 130]: SamplesSeen = 60; TrainLossPerSample =  2.18641154; EvalErr[0]PerSample = 0.56666667; TotalTime = 4.0698s; SamplesPerSecond = 14.7
+ Epoch[ 1 of 30]-Minibatch[ 131- 140]: SamplesSeen = 60; TrainLossPerSample =  1.84294027; EvalErr[0]PerSample = 0.50000000; TotalTime = 3.7723s; SamplesPerSecond = 15.9
+ Epoch[ 1 of 30]-Minibatch[ 141- 150]: SamplesSeen = 60; TrainLossPerSample =  2.32231445; EvalErr[0]PerSample = 0.65000000; TotalTime = 4.0648s; SamplesPerSecond = 14.8
+Finished Epoch[ 1 of 30]: [Training Set] TrainLossPerSample = 2.4044795; TotalSamplesSeen = 900; EvalErrPerSample = 0.63333333; AvgLearningRatePerSample = 0.0008333333; EpochTime=65.9953
+SGD: Saving checkpoint model 'Models/model.dnn.1'
+
+Starting Epoch 2: learning rate per sample = 0.000833  effective momentum = 0.900000  momentum as time constant = 56.9 samples
+
+Starting minibatch loop.
+Premature end of JPEG file
+ Epoch[ 2 of 30]-Minibatch[   1-  10, 6.67%]: SamplesSeen = 60; TrainLossPerSample =  3.33017807; EvalErr[0]PerSample = 0.63333333; TotalTime = 6.3969s; SamplesPerSecond = 9.4
+ Epoch[ 2 of 30]-Minibatch[  11-  20, 13.33%]: SamplesSeen = 60; TrainLossPerSample =  3.14294612; EvalErr[0]PerSample = 0.81666667; TotalTime = 4.5360s; SamplesPerSecond = 13.2
+ Epoch[ 2 of 30]-Minibatch[  21-  30, 20.00%]: SamplesSeen = 60; TrainLossPerSample =  2.83229268; EvalErr[0]PerSample = 0.68333333; TotalTime = 4.1581s; SamplesPerSecond = 14.4
+Premature end of JPEG file
+ Epoch[ 2 of 30]-Minibatch[  31-  40, 26.67%]: SamplesSeen = 60; TrainLossPerSample =  2.92763977; EvalErr[0]PerSample = 0.76666667; TotalTime = 3.6944s; SamplesPerSecond = 16.2
+ Epoch[ 2 of 30]-Minibatch[  41-  50, 33.33%]: SamplesSeen = 60; TrainLossPerSample =  2.65609945; EvalErr[0]PerSample = 0.68333333; TotalTime = 3.5888s; SamplesPerSecond = 16.7
+Premature end of JPEG file
+ Epoch[ 2 of 30]-Minibatch[  51-  60, 40.00%]: SamplesSeen = 60; TrainLossPerSample =  2.40729980; EvalErr[0]PerSample = 0.68333333; TotalTime = 3.4711s; SamplesPerSecond = 17.3
+ Epoch[ 2 of 30]-Minibatch[  61-  70, 46.67%]: SamplesSeen = 60; TrainLossPerSample =  2.58275757; EvalErr[0]PerSample = 0.65000000; TotalTime = 3.4439s; SamplesPerSecond = 17.4
+ Epoch[ 2 of 30]-Minibatch[  71-  80, 53.33%]: SamplesSeen = 60; TrainLossPerSample =  2.49321493; EvalErr[0]PerSample = 0.73333333; TotalTime = 3.4984s; SamplesPerSecond = 17.2
+ Epoch[ 2 of 30]-Minibatch[  81-  90, 60.00%]: SamplesSeen = 60; TrainLossPerSample =  2.17983398; EvalErr[0]PerSample = 0.58333333; TotalTime = 3.5523s; SamplesPerSecond = 16.9
+ Epoch[ 2 of 30]-Minibatch[  91- 100, 66.67%]: SamplesSeen = 60; TrainLossPerSample =  2.08966471; EvalErr[0]PerSample = 0.58333333; TotalTime = 3.4709s; SamplesPerSecond = 17.3
+WARNING: The same matrix with dim [1, 1] has been transferred between different devices for 20 times.
+ Epoch[ 2 of 30]-Minibatch[ 101- 110, 73.33%]: SamplesSeen = 60; TrainLossPerSample =  2.36592407; EvalErr[0]PerSample = 0.61666667; TotalTime = 3.5435s; SamplesPerSecond = 16.9
+ Epoch[ 2 of 30]-Minibatch[ 111- 120, 80.00%]: SamplesSeen = 60; TrainLossPerSample =  1.91275024; EvalErr[0]PerSample = 0.45000000; TotalTime = 3.5913s; SamplesPerSecond = 16.7
+Premature end of JPEG file
+ Epoch[ 2 of 30]-Minibatch[ 121- 130, 86.67%]: SamplesSeen = 60; TrainLossPerSample =  2.16815186; EvalErr[0]PerSample = 0.56666667; TotalTime = 3.6157s; SamplesPerSecond = 16.6
+ Epoch[ 2 of 30]-Minibatch[ 131- 140, 93.33%]: SamplesSeen = 60; TrainLossPerSample =  1.84711507; EvalErr[0]PerSample = 0.48333333; TotalTime = 3.5421s; SamplesPerSecond = 16.9
+ Epoch[ 2 of 30]-Minibatch[ 141- 150, 100.00%]: SamplesSeen = 60; TrainLossPerSample =  2.33798421; EvalErr[0]PerSample = 0.66666667; TotalTime = 3.5631s; SamplesPerSecond = 16.8
+Finished Epoch[ 2 of 30]: [Training Set] TrainLossPerSample = 2.4849236; TotalSamplesSeen = 1800; EvalErrPerSample = 0.63999999; AvgLearningRatePerSample = 0.0008333333; EpochTime=57.6865
+SGD: Saving checkpoint model 'Models/model.dnn.2'
+
+Starting Epoch 3: learning rate per sample = 0.000167  effective momentum = 0.900000  momentum as time constant = 56.9 samples
+
+Starting minibatch loop.
+Premature end of JPEG file
+ Epoch[ 3 of 30]-Minibatch[   1-  10, 6.67%]: SamplesSeen = 60; TrainLossPerSample =  3.79473368; EvalErr[0]PerSample = 0.76666667; TotalTime = 6.0969s; SamplesPerSecond = 9.8
+ Epoch[ 3 of 30]-Minibatch[  11-  20, 13.33%]: SamplesSeen = 60; TrainLossPerSample =  3.00563558; EvalErr[0]PerSample = 0.70000000; TotalTime = 4.4051s; SamplesPerSecond = 13.6
+ Epoch[ 3 of 30]-Minibatch[  21-  30, 20.00%]: SamplesSeen = 60; TrainLossPerSample =  2.46325684; EvalErr[0]PerSample = 0.55000000; TotalTime = 4.0658s; SamplesPerSecond = 14.8
+Premature end of JPEG file
+ Epoch[ 3 of 30]-Minibatch[  31-  40, 26.67%]: SamplesSeen = 60; TrainLossPerSample =  2.53034159; EvalErr[0]PerSample = 0.75000000; TotalTime = 3.7190s; SamplesPerSecond = 16.1
+ Epoch[ 3 of 30]-Minibatch[  41-  50, 33.33%]: SamplesSeen = 60; TrainLossPerSample =  2.55444031; EvalErr[0]PerSample = 0.68333333; TotalTime = 3.4762s; SamplesPerSecond = 17.3
+Premature end of JPEG file
+ Epoch[ 3 of 30]-Minibatch[  51-  60, 40.00%]: SamplesSeen = 60; TrainLossPerSample =  2.37722168; EvalErr[0]PerSample = 0.63333333; TotalTime = 3.3898s; SamplesPerSecond = 17.7
+ Epoch[ 3 of 30]-Minibatch[  61-  70, 46.67%]: SamplesSeen = 60; TrainLossPerSample =  2.29907328; EvalErr[0]PerSample = 0.65000000; TotalTime = 3.5069s; SamplesPerSecond = 17.1
+ Epoch[ 3 of 30]-Minibatch[  71-  80, 53.33%]: SamplesSeen = 60; TrainLossPerSample =  2.15501912; EvalErr[0]PerSample = 0.70000000; TotalTime = 3.5280s; SamplesPerSecond = 17.0
+ Epoch[ 3 of 30]-Minibatch[  81-  90, 60.00%]: SamplesSeen = 60; TrainLossPerSample =  1.99592285; EvalErr[0]PerSample = 0.70000000; TotalTime = 3.4854s; SamplesPerSecond = 17.2
+ Epoch[ 3 of 30]-Minibatch[  91- 100, 66.67%]: SamplesSeen = 60; TrainLossPerSample =  2.06648153; EvalErr[0]PerSample = 0.50000000; TotalTime = 3.4146s; SamplesPerSecond = 17.6
+WARNING: The same matrix with dim [1, 1] has been transferred between different devices for 20 times.
+ Epoch[ 3 of 30]-Minibatch[ 101- 110, 73.33%]: SamplesSeen = 60; TrainLossPerSample =  2.27626953; EvalErr[0]PerSample = 0.61666667; TotalTime = 3.3229s; SamplesPerSecond = 18.1
+ Epoch[ 3 of 30]-Minibatch[ 111- 120, 80.00%]: SamplesSeen = 60; TrainLossPerSample =  1.84194743; EvalErr[0]PerSample = 0.38333333; TotalTime = 3.4361s; SamplesPerSecond = 17.5
+Premature end of JPEG file
+ Epoch[ 3 of 30]-Minibatch[ 121- 130, 86.67%]: SamplesSeen = 60; TrainLossPerSample =  2.06139323; EvalErr[0]PerSample = 0.48333333; TotalTime = 3.3889s; SamplesPerSecond = 17.7
+ Epoch[ 3 of 30]-Minibatch[ 131- 140, 93.33%]: SamplesSeen = 60; TrainLossPerSample =  1.92418823; EvalErr[0]PerSample = 0.56666667; TotalTime = 3.4656s; SamplesPerSecond = 17.3
+ Epoch[ 3 of 30]-Minibatch[ 141- 150, 100.00%]: SamplesSeen = 60; TrainLossPerSample =  2.08875936; EvalErr[0]PerSample = 0.58333333; TotalTime = 3.4706s; SamplesPerSecond = 17.3
+Finished Epoch[ 3 of 30]: [Training Set] TrainLossPerSample = 2.3623123; TotalSamplesSeen = 2700; EvalErrPerSample = 0.61777776; AvgLearningRatePerSample = 0.00016666668; EpochTime=56.191
+SGD: Saving checkpoint model 'Models/model.dnn.3'
+
+Starting Epoch 4: learning rate per sample = 0.000167  effective momentum = 0.900000  momentum as time constant = 56.9 samples
+
+Starting minibatch loop.
+Premature end of JPEG file
+ Epoch[ 4 of 30]-Minibatch[   1-  10, 6.67%]: SamplesSeen = 60; TrainLossPerSample =  2.42185109; EvalErr[0]PerSample = 0.71666667; TotalTime = 3.5693s; SamplesPerSecond = 16.8
+ Epoch[ 4 of 30]-Minibatch[  11-  20, 13.33%]: SamplesSeen = 60; TrainLossPerSample =  2.44601491; EvalErr[0]PerSample = 0.51666667; TotalTime = 3.3668s; SamplesPerSecond = 17.8
+ Epoch[ 4 of 30]-Minibatch[  21-  30, 20.00%]: SamplesSeen = 60; TrainLossPerSample =  2.29188487; EvalErr[0]PerSample = 0.61666667; TotalTime = 3.0057s; SamplesPerSecond = 20.0
+Premature end of JPEG file
+ Epoch[ 4 of 30]-Minibatch[  31-  40, 26.67%]: SamplesSeen = 60; TrainLossPerSample =  2.38355153; EvalErr[0]PerSample = 0.73333333; TotalTime = 2.9092s; SamplesPerSecond = 20.6
+ Epoch[ 4 of 30]-Minibatch[  41-  50, 33.33%]: SamplesSeen = 60; TrainLossPerSample =  2.47160950; EvalErr[0]PerSample = 0.66666667; TotalTime = 2.7335s; SamplesPerSecond = 21.9
+Premature end of JPEG file
+ Epoch[ 4 of 30]-Minibatch[  51-  60, 40.00%]: SamplesSeen = 60; TrainLossPerSample =  2.33118083; EvalErr[0]PerSample = 0.66666667; TotalTime = 2.7053s; SamplesPerSecond = 22.2
+ Epoch[ 4 of 30]-Minibatch[  61-  70, 46.67%]: SamplesSeen = 60; TrainLossPerSample =  2.22194519; EvalErr[0]PerSample = 0.55000000; TotalTime = 2.8111s; SamplesPerSecond = 21.3
+ Epoch[ 4 of 30]-Minibatch[  71-  80, 53.33%]: SamplesSeen = 60; TrainLossPerSample =  2.08940837; EvalErr[0]PerSample = 0.61666667; TotalTime = 2.7113s; SamplesPerSecond = 22.1
+ Epoch[ 4 of 30]-Minibatch[  81-  90, 60.00%]: SamplesSeen = 60; TrainLossPerSample =  1.94389242; EvalErr[0]PerSample = 0.65000000; TotalTime = 2.6181s; SamplesPerSecond = 22.9
+ Epoch[ 4 of 30]-Minibatch[  91- 100, 66.67%]: SamplesSeen = 60; TrainLossPerSample =  2.00999756; EvalErr[0]PerSample = 0.48333333; TotalTime = 2.6537s; SamplesPerSecond = 22.6
+WARNING: The same matrix with dim [1, 1] has been transferred between different devices for 20 times.
+ Epoch[ 4 of 30]-Minibatch[ 101- 110, 73.33%]: SamplesSeen = 60; TrainLossPerSample =  2.23267212; EvalErr[0]PerSample = 0.60000000; TotalTime = 2.7206s; SamplesPerSecond = 22.1
+ Epoch[ 4 of 30]-Minibatch[ 111- 120, 80.00%]: SamplesSeen = 60; TrainLossPerSample =  1.81741130; EvalErr[0]PerSample = 0.38333333; TotalTime = 2.8388s; SamplesPerSecond = 21.1
+Premature end of JPEG file
+ Epoch[ 4 of 30]-Minibatch[ 121- 130, 86.67%]: SamplesSeen = 60; TrainLossPerSample =  2.03068644; EvalErr[0]PerSample = 0.46666667; TotalTime = 2.7679s; SamplesPerSecond = 21.7
+ Epoch[ 4 of 30]-Minibatch[ 131- 140, 93.33%]: SamplesSeen = 60; TrainLossPerSample =  1.91449788; EvalErr[0]PerSample = 0.56666667; TotalTime = 2.7012s; SamplesPerSecond = 22.2
+ Epoch[ 4 of 30]-Minibatch[ 141- 150, 100.00%]: SamplesSeen = 60; TrainLossPerSample =  2.06127523; EvalErr[0]PerSample = 0.56666667; TotalTime = 2.8843s; SamplesPerSecond = 20.8
+Finished Epoch[ 4 of 30]: [Training Set] TrainLossPerSample = 2.1778586; TotalSamplesSeen = 3600; EvalErrPerSample = 0.5866667; AvgLearningRatePerSample = 0.00016666668; EpochTime=43.0208
+SGD: Saving checkpoint model 'Models/model.dnn.4'
+
+Starting Epoch 5: learning rate per sample = 0.000167  effective momentum = 0.900000  momentum as time constant = 56.9 samples
+
+Starting minibatch loop.
+Premature end of JPEG file
+ Epoch[ 5 of 30]-Minibatch[   1-  10, 6.67%]: SamplesSeen = 60; TrainLossPerSample =  2.37007395; EvalErr[0]PerSample = 0.65000000; TotalTime = 3.3198s; SamplesPerSecond = 18.1
+ Epoch[ 5 of 30]-Minibatch[  11-  20, 13.33%]: SamplesSeen = 60; TrainLossPerSample =  2.39705658; EvalErr[0]PerSample = 0.45000000; TotalTime = 2.7937s; SamplesPerSecond = 21.5
+ Epoch[ 5 of 30]-Minibatch[  21-  30, 20.00%]: SamplesSeen = 60; TrainLossPerSample =  2.27446442; EvalErr[0]PerSample = 0.60000000; TotalTime = 2.8707s; SamplesPerSecond = 20.9
+Premature end of JPEG file
+ Epoch[ 5 of 30]-Minibatch[  31-  40, 26.67%]: SamplesSeen = 60; TrainLossPerSample =  2.33388723; EvalErr[0]PerSample = 0.68333333; TotalTime = 2.8262s; SamplesPerSecond = 21.2
+ Epoch[ 5 of 30]-Minibatch[  41-  50, 33.33%]: SamplesSeen = 60; TrainLossPerSample =  2.43615112; EvalErr[0]PerSample = 0.66666667; TotalTime = 2.6411s; SamplesPerSecond = 22.7
+Premature end of JPEG file
+ Epoch[ 5 of 30]-Minibatch[  51-  60, 40.00%]: SamplesSeen = 60; TrainLossPerSample =  2.31799316; EvalErr[0]PerSample = 0.70000000; TotalTime = 2.6861s; SamplesPerSecond = 22.3
+ Epoch[ 5 of 30]-Minibatch[  61-  70, 46.67%]: SamplesSeen = 60; TrainLossPerSample =  2.18657633; EvalErr[0]PerSample = 0.51666667; TotalTime = 2.8926s; SamplesPerSecond = 20.7
+ Epoch[ 5 of 30]-Minibatch[  71-  80, 53.33%]: SamplesSeen = 60; TrainLossPerSample =  2.03867187; EvalErr[0]PerSample = 0.61666667; TotalTime = 2.7826s; SamplesPerSecond = 21.6
+ Epoch[ 5 of 30]-Minibatch[  81-  90, 60.00%]: SamplesSeen = 60; TrainLossPerSample =  1.91387736; EvalErr[0]PerSample = 0.61666667; TotalTime = 2.8314s; SamplesPerSecond = 21.2
+ Epoch[ 5 of 30]-Minibatch[  91- 100, 66.67%]: SamplesSeen = 60; TrainLossPerSample =  1.96772664; EvalErr[0]PerSample = 0.48333333; TotalTime = 2.6773s; SamplesPerSecond = 22.4
+WARNING: The same matrix with dim [1, 1] has been transferred between different devices for 20 times.
+ Epoch[ 5 of 30]-Minibatch[ 101- 110, 73.33%]: SamplesSeen = 60; TrainLossPerSample =  2.20586955; EvalErr[0]PerSample = 0.60000000; TotalTime = 2.8829s; SamplesPerSecond = 20.8
+ Epoch[ 5 of 30]-Minibatch[ 111- 120, 80.00%]: SamplesSeen = 60; TrainLossPerSample =  1.79315796; EvalErr[0]PerSample = 0.38333333; TotalTime = 3.0438s; SamplesPerSecond = 19.7
+Premature end of JPEG file
+ Epoch[ 5 of 30]-Minibatch[ 121- 130, 86.67%]: SamplesSeen = 60; TrainLossPerSample =  2.00007528; EvalErr[0]PerSample = 0.46666667; TotalTime = 2.7642s; SamplesPerSecond = 21.7
+ Epoch[ 5 of 30]-Minibatch[ 131- 140, 93.33%]: SamplesSeen = 60; TrainLossPerSample =  1.89135742; EvalErr[0]PerSample = 0.56666667; TotalTime = 2.7245s; SamplesPerSecond = 22.0
+ Epoch[ 5 of 30]-Minibatch[ 141- 150, 100.00%]: SamplesSeen = 60; TrainLossPerSample =  2.02748006; EvalErr[0]PerSample = 0.53333333; TotalTime = 2.7777s; SamplesPerSecond = 21.6
+Finished Epoch[ 5 of 30]: [Training Set] TrainLossPerSample = 2.1436279; TotalSamplesSeen = 4500; EvalErrPerSample = 0.5688889; AvgLearningRatePerSample = 0.00016666668; EpochTime=42.5427
+forrtl: error (200): program aborting due to control-C event
+Image              PC                Routine            Line        Source             
+libifcoremd.dll    0000026298FF4277  Unknown               Unknown  Unknown
+libifcoremd.dll    0000026298FEFD13  Unknown               Unknown  Unknown
+libifcoremd.dll    0000026298FDB926  Unknown               Unknown  Unknown
+libifcoremd.dll    0000026298F39EDE  Unknown               Unknown  Unknown
+libifcoremd.dll    0000026298F50214  Unknown               Unknown  Unknown
+KERNELBASE.dll     00007FF8540A6634  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FF855D38102  Unknown               Unknown  Unknown
+ntdll.dll          00007FF8579EC5B4  Unknown               Unknown  Unknown

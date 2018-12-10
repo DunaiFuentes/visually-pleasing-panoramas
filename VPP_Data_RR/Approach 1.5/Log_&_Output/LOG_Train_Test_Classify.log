@@ -1,0 +1,1229 @@
+-------------------------------------------------------------------
+Build info: 
+
+		Built time: Mar  4 2016 17:16:23
+		Last modified date: Thu Mar  3 22:34:01 2016
+		Build type: Release
+		Build target: GPU
+		With 1bit-SGD: yes
+		CUDA_PATH: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5
+		CUB_PATH: C:\src\cub-1.4.1
+		CUDNN_PATH: C:\src\cudnn-4.0\cuda
+		Build Branch: master
+		Build SHA1: 7c811de9e33d0184fdf340cd79f4f17faacf41cc (modified)
+		Built by Dunai on Lenovo-Dunai
+		Build Path: C:\Users\Dunai\CNTK\Source\CNTK\
+-------------------------------------------------------------------
+running on Lenovo-Dunai at 2016/04/03 11:14:10
+command line: 
+cntk  configFile=MirFlickr.cntk
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG (VARIABLES NOT RESOLVED) >>>>>>>>>>>>>>>>>>>>
+command=Train:Test:Classify
+modelPath="Models/model.dnn"	
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    
+Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "MirFlickr.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=25
+learningRatesPerMB=0.1*7:0.05*8:0.01*10:0.005  
+        momentumPerMB = 0.5
+		maxEpochs=40
+        dropoutRate=0.0
+        L2RegWeight=0.0001
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train.txt"
+randomize="None"            
+		features=[			
+width=200       
+            height=200
+            channels=3
+            cropType="Random"
+            hflip=0
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Edit=[
+	action="edit"
+    CurModel=$modelPath$
+    editPath="MirFlickr.mel"
+]
+Test=[
+	action="test"
+    minibatchSize=10
+	reader = [
+		readerType = "ImageReader"
+		file = "Test.txt"	
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Classify=[
+	action="write"
+    minibatchSize=10
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+outputPath = "output_MirFlickr.txt"		
+]
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG (VARIABLES NOT RESOLVED)  <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> RAW CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+command=Train:Test:Classify
+modelPath="Models/model.dnn"	
+deviceId=0
+stderr = "LOG"
+imageLayout = "cudnn"
+precision = "float"
+traceLevel=1                    
+Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "MirFlickr.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=25
+learningRatesPerMB=0.1*7:0.05*8:0.01*10:0.005  
+        momentumPerMB = 0.5
+		maxEpochs=40
+        dropoutRate=0.0
+        L2RegWeight=0.0001
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train.txt"
+randomize="None"            
+		features=[			
+width=200       
+            height=200
+            channels=3
+            cropType="Random"
+            hflip=0
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Edit=[
+	action="edit"
+    CurModel=Models/model.dnn
+    editPath="MirFlickr.mel"
+]
+Test=[
+	action="test"
+    minibatchSize=10
+	reader = [
+		readerType = "ImageReader"
+		file = "Test.txt"	
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+Classify=[
+	action="write"
+    minibatchSize=10
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+outputPath = "output_MirFlickr.txt"		
+]
+
+<<<<<<<<<<<<<<<<<<<< RAW CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+
+>>>>>>>>>>>>>>>>>>>> PROCESSED CONFIG WITH ALL VARIABLES RESOLVED >>>>>>>>>>>>>>>>>>>>
+configparameters: MirFlickr.cntk:Classify=[
+	action="write"
+    minibatchSize=10
+	reader = [
+		readerType = "ImageReader"
+		file = "Classify.txt"
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+outputPath = "output_MirFlickr.txt"		
+]
+
+configparameters: MirFlickr.cntk:command=Train:Test:Classify
+configparameters: MirFlickr.cntk:deviceId=0
+configparameters: MirFlickr.cntk:Edit=[
+	action="edit"
+    CurModel=Models/model.dnn
+    editPath="MirFlickr.mel"
+]
+
+configparameters: MirFlickr.cntk:imageLayout=cudnn
+configparameters: MirFlickr.cntk:modelPath=Models/model.dnn
+configparameters: MirFlickr.cntk:precision=float
+configparameters: MirFlickr.cntk:stderr=LOG
+configparameters: MirFlickr.cntk:Test=[
+	action="test"
+    minibatchSize=10
+	reader = [
+		readerType = "ImageReader"
+		file = "Test.txt"	
+		randomize="None"
+		features=[			
+			width=200
+            height=200
+            channels=3
+            cropType="Center"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+
+configparameters: MirFlickr.cntk:traceLevel=1
+configparameters: MirFlickr.cntk:Train=[
+	action="train"
+	NDLNetworkBuilder=[
+        ndlMacros="Macros.ndl"
+        networkDescription = "MirFlickr.ndl"
+    ]
+	SGD = [	
+epochSize=0		            
+		minibatchSize=25
+learningRatesPerMB=0.1*7:0.05*8:0.01*10:0.005  
+        momentumPerMB = 0.5
+		maxEpochs=40
+        dropoutRate=0.0
+        L2RegWeight=0.0001
+	]
+	reader = [
+		readerType ="ImageReader"
+		file = "Train.txt"
+randomize="None"            
+		features=[			
+width=200       
+            height=200
+            channels=3
+            cropType="Random"
+            hflip=0
+            cropRatio=1
+            jitterType="UniRatio"
+            interpolations="Linear"
+		]
+		labels=[
+			labelDim=4
+		]
+	]
+]
+
+<<<<<<<<<<<<<<<<<<<< PROCESSED CONFIG WITH ALL VARIABLES RESOLVED <<<<<<<<<<<<<<<<<<<<
+Commands: Train Test Classify 
+Precision = "float"
+CNTKModelPath: Models/model.dnn
+CNTKCommandTrainInfo: Train : 40
+CNTKCommandTrainInfo: CNTKNoMoreCommands_Total : 40
+
+##############################################################################
+#                                                                            #
+# Action "train"                                                             #
+#                                                                            #
+##############################################################################
+
+CNTKCommandTrainBegin: Train
+NDLBuilder Using GPU 0
+Microsoft::MSR::CNTK::GPUMatrix<ElemType>::SetUniformRandomValue (GPU): creating curand object with seed 1, sizeof(ElemType)==4
+
+Post-processing network...
+
+3 roots:
+	ce = CrossEntropyWithSoftmax
+	err = ErrorPrediction
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for ce CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 22 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+Validating network. 13 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+9 out of 22 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+
+SGD using GPU 0.
+
+Training criterion node(s):
+	ce = CrossEntropyWithSoftmax
+
+Evaluation criterion node(s):
+	err = ErrorPrediction
+
+
+Allocating matrices for forward and/or backward propagation.
+No PreCompute nodes found, skipping PreCompute step.
+
+Starting Epoch 1: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 1 of 40]-Minibatch[   1-  10]: SamplesSeen = 250; TrainLossPerSample = 12.82678125; EvalErr[0]PerSample = 0.74400000; TotalTime = 3.5574s; SamplesPerSecond = 70.3
+ Epoch[ 1 of 40]-Minibatch[  11-  20]: SamplesSeen = 250; TrainLossPerSample = 10.14968750; EvalErr[0]PerSample = 0.75200000; TotalTime = 1.5335s; SamplesPerSecond = 163.0
+ Epoch[ 1 of 40]-Minibatch[  21-  30]: SamplesSeen = 250; TrainLossPerSample =  9.40523047; EvalErr[0]PerSample = 0.74800000; TotalTime = 1.5995s; SamplesPerSecond = 156.3
+ Epoch[ 1 of 40]-Minibatch[  31-  40]: SamplesSeen = 250; TrainLossPerSample =  7.94949609; EvalErr[0]PerSample = 0.75200000; TotalTime = 1.6115s; SamplesPerSecond = 155.1
+ Epoch[ 1 of 40]-Minibatch[  41-  50]: SamplesSeen = 250; TrainLossPerSample =  7.75830469; EvalErr[0]PerSample = 0.74800000; TotalTime = 1.5584s; SamplesPerSecond = 160.4
+ Epoch[ 1 of 40]-Minibatch[  51-  60]: SamplesSeen = 250; TrainLossPerSample =  6.83960547; EvalErr[0]PerSample = 0.75200000; TotalTime = 1.5624s; SamplesPerSecond = 160.0
+ Epoch[ 1 of 40]-Minibatch[  61-  70]: SamplesSeen = 250; TrainLossPerSample =  6.79678125; EvalErr[0]PerSample = 0.74800000; TotalTime = 1.6216s; SamplesPerSecond = 154.2
+Finished Epoch[ 1 of 40]: [Training Set] TrainLossPerSample = 8.7668133; TotalSamplesSeen = 1784; EvalErrPerSample = 0.74943948; AvgLearningRatePerSample = 0.0040000002; EpochTime=13.3218
+SGD: Saving checkpoint model 'Models/model.dnn.1'
+
+Starting Epoch 2: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 2 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  6.36021533; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.6343s; SamplesPerSecond = 153.0
+ Epoch[ 2 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  6.44397314; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.5844s; SamplesPerSecond = 157.8
+ Epoch[ 2 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  6.27030176; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.5350s; SamplesPerSecond = 162.9
+ Epoch[ 2 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  6.02679297; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.6123s; SamplesPerSecond = 155.1
+ Epoch[ 2 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  5.87665039; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.5885s; SamplesPerSecond = 157.4
+ Epoch[ 2 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  5.67825781; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.6399s; SamplesPerSecond = 152.4
+ Epoch[ 2 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  5.56950781; EvalErr[0]PerSample = 0.76000000; TotalTime = 1.5882s; SamplesPerSecond = 157.4
+Finished Epoch[ 2 of 40]: [Training Set] TrainLossPerSample = 6.0227022; TotalSamplesSeen = 3568; EvalErrPerSample = 0.7600897; AvgLearningRatePerSample = 0.0040000002; EpochTime=11.461
+SGD: Saving checkpoint model 'Models/model.dnn.2'
+
+Starting Epoch 3: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 3 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  3.76997705; EvalErr[0]PerSample = 0.71200000; TotalTime = 1.6542s; SamplesPerSecond = 151.1
+ Epoch[ 3 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  3.91222607; EvalErr[0]PerSample = 0.71600000; TotalTime = 1.5341s; SamplesPerSecond = 163.0
+ Epoch[ 3 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  3.13139160; EvalErr[0]PerSample = 0.69600000; TotalTime = 1.5617s; SamplesPerSecond = 160.1
+ Epoch[ 3 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  2.47944043; EvalErr[0]PerSample = 0.70800000; TotalTime = 1.5353s; SamplesPerSecond = 162.8
+ Epoch[ 3 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  3.97917578; EvalErr[0]PerSample = 0.71200000; TotalTime = 1.5854s; SamplesPerSecond = 157.7
+ Epoch[ 3 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  3.31137695; EvalErr[0]PerSample = 0.72800000; TotalTime = 1.5099s; SamplesPerSecond = 165.6
+ Epoch[ 3 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  2.82404492; EvalErr[0]PerSample = 0.70000000; TotalTime = 1.5875s; SamplesPerSecond = 157.5
+Finished Epoch[ 3 of 40]: [Training Set] TrainLossPerSample = 3.3382318; TotalSamplesSeen = 5352; EvalErrPerSample = 0.70908076; AvgLearningRatePerSample = 0.0040000002; EpochTime=11.2462
+SGD: Saving checkpoint model 'Models/model.dnn.3'
+
+Starting Epoch 4: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 4 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  3.54927002; EvalErr[0]PerSample = 0.72000000; TotalTime = 1.6220s; SamplesPerSecond = 154.1
+ Epoch[ 4 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  2.12371777; EvalErr[0]PerSample = 0.72000000; TotalTime = 1.5318s; SamplesPerSecond = 163.2
+ Epoch[ 4 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.79523193; EvalErr[0]PerSample = 0.64800000; TotalTime = 1.6406s; SamplesPerSecond = 152.4
+ Epoch[ 4 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.74264941; EvalErr[0]PerSample = 0.66800000; TotalTime = 1.5858s; SamplesPerSecond = 157.7
+ Epoch[ 4 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.34448340; EvalErr[0]PerSample = 0.62000000; TotalTime = 1.5786s; SamplesPerSecond = 158.4
+ Epoch[ 4 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.36840332; EvalErr[0]PerSample = 0.61600000; TotalTime = 1.6130s; SamplesPerSecond = 155.0
+ Epoch[ 4 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.23501465; EvalErr[0]PerSample = 0.58400000; TotalTime = 1.5412s; SamplesPerSecond = 162.2
+Finished Epoch[ 4 of 40]: [Training Set] TrainLossPerSample = 1.8718622; TotalSamplesSeen = 7136; EvalErrPerSample = 0.65470856; AvgLearningRatePerSample = 0.0040000002; EpochTime=11.3909
+SGD: Saving checkpoint model 'Models/model.dnn.4'
+
+Starting Epoch 5: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 5 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.78497473; EvalErr[0]PerSample = 0.62800000; TotalTime = 1.5985s; SamplesPerSecond = 156.4
+ Epoch[ 5 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.35349500; EvalErr[0]PerSample = 0.60800000; TotalTime = 1.5145s; SamplesPerSecond = 165.1
+ Epoch[ 5 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.31741406; EvalErr[0]PerSample = 0.61600000; TotalTime = 1.5364s; SamplesPerSecond = 162.7
+ Epoch[ 5 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.67493262; EvalErr[0]PerSample = 0.66800000; TotalTime = 1.5344s; SamplesPerSecond = 162.9
+ Epoch[ 5 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.40369727; EvalErr[0]PerSample = 0.62800000; TotalTime = 1.6120s; SamplesPerSecond = 155.1
+ Epoch[ 5 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.25667969; EvalErr[0]PerSample = 0.54800000; TotalTime = 1.5576s; SamplesPerSecond = 160.5
+ Epoch[ 5 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.19494336; EvalErr[0]PerSample = 0.57600000; TotalTime = 1.5951s; SamplesPerSecond = 156.7
+Finished Epoch[ 5 of 40]: [Training Set] TrainLossPerSample = 1.4291214; TotalSamplesSeen = 8920; EvalErrPerSample = 0.61154711; AvgLearningRatePerSample = 0.0040000002; EpochTime=11.2267
+SGD: Saving checkpoint model 'Models/model.dnn.5'
+
+Starting Epoch 6: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 6 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  2.55037866; EvalErr[0]PerSample = 0.70800000; TotalTime = 1.5898s; SamplesPerSecond = 157.3
+ Epoch[ 6 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  2.14629272; EvalErr[0]PerSample = 0.64800000; TotalTime = 1.5610s; SamplesPerSecond = 160.2
+ Epoch[ 6 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.81759570; EvalErr[0]PerSample = 0.61200000; TotalTime = 1.5597s; SamplesPerSecond = 160.3
+ Epoch[ 6 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.41014648; EvalErr[0]PerSample = 0.64000000; TotalTime = 1.5976s; SamplesPerSecond = 156.5
+ Epoch[ 6 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.42910498; EvalErr[0]PerSample = 0.62400000; TotalTime = 1.5091s; SamplesPerSecond = 165.7
+ Epoch[ 6 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.34498437; EvalErr[0]PerSample = 0.55600000; TotalTime = 1.5344s; SamplesPerSecond = 162.9
+ Epoch[ 6 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.19914648; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5864s; SamplesPerSecond = 157.6
+Finished Epoch[ 6 of 40]: [Training Set] TrainLossPerSample = 1.6994661; TotalSamplesSeen = 10704; EvalErrPerSample = 0.61603141; AvgLearningRatePerSample = 0.0040000002; EpochTime=11.2161
+SGD: Saving checkpoint model 'Models/model.dnn.6'
+
+Starting Epoch 7: learning rate per sample = 0.004000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 7 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  2.13036597; EvalErr[0]PerSample = 0.67600000; TotalTime = 1.6357s; SamplesPerSecond = 152.8
+ Epoch[ 7 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.41709155; EvalErr[0]PerSample = 0.61200000; TotalTime = 1.5092s; SamplesPerSecond = 165.6
+ Epoch[ 7 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.26639014; EvalErr[0]PerSample = 0.56400000; TotalTime = 1.6019s; SamplesPerSecond = 156.1
+ Epoch[ 7 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.34222803; EvalErr[0]PerSample = 0.60000000; TotalTime = 1.5879s; SamplesPerSecond = 157.4
+ Epoch[ 7 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.41059717; EvalErr[0]PerSample = 0.60400000; TotalTime = 1.5394s; SamplesPerSecond = 162.4
+ Epoch[ 7 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.64939941; EvalErr[0]PerSample = 0.60400000; TotalTime = 1.5388s; SamplesPerSecond = 162.5
+ Epoch[ 7 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.18112988; EvalErr[0]PerSample = 0.56400000; TotalTime = 1.5805s; SamplesPerSecond = 158.2
+Finished Epoch[ 7 of 40]: [Training Set] TrainLossPerSample = 1.48306; TotalSamplesSeen = 12488; EvalErrPerSample = 0.60313904; AvgLearningRatePerSample = 0.0040000002; EpochTime=11.2717
+SGD: Saving checkpoint model 'Models/model.dnn.7'
+
+Starting Epoch 8: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 8 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.37360754; EvalErr[0]PerSample = 0.58800000; TotalTime = 1.5890s; SamplesPerSecond = 157.3
+ Epoch[ 8 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.23788953; EvalErr[0]PerSample = 0.53600000; TotalTime = 1.6122s; SamplesPerSecond = 155.1
+ Epoch[ 8 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.20531543; EvalErr[0]PerSample = 0.54000000; TotalTime = 1.5202s; SamplesPerSecond = 164.5
+ Epoch[ 8 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.24796875; EvalErr[0]PerSample = 0.58400000; TotalTime = 1.5919s; SamplesPerSecond = 157.0
+ Epoch[ 8 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.18322363; EvalErr[0]PerSample = 0.52800000; TotalTime = 1.5697s; SamplesPerSecond = 159.3
+ Epoch[ 8 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.14446826; EvalErr[0]PerSample = 0.48000000; TotalTime = 1.6060s; SamplesPerSecond = 155.7
+ Epoch[ 8 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.11927002; EvalErr[0]PerSample = 0.50000000; TotalTime = 1.5605s; SamplesPerSecond = 160.2
+Finished Epoch[ 8 of 40]: [Training Set] TrainLossPerSample = 1.2188418; TotalSamplesSeen = 14272; EvalErrPerSample = 0.53867716; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.3272
+SGD: Saving checkpoint model 'Models/model.dnn.8'
+
+Starting Epoch 9: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[ 9 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.21311731; EvalErr[0]PerSample = 0.53600000; TotalTime = 1.6055s; SamplesPerSecond = 155.7
+ Epoch[ 9 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.22404163; EvalErr[0]PerSample = 0.56000000; TotalTime = 1.6065s; SamplesPerSecond = 155.6
+ Epoch[ 9 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.20939258; EvalErr[0]PerSample = 0.55600000; TotalTime = 1.5635s; SamplesPerSecond = 159.9
+ Epoch[ 9 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.25337085; EvalErr[0]PerSample = 0.59200000; TotalTime = 1.5188s; SamplesPerSecond = 164.6
+ Epoch[ 9 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.16100439; EvalErr[0]PerSample = 0.52800000; TotalTime = 1.5094s; SamplesPerSecond = 165.6
+ Epoch[ 9 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.14226855; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.5600s; SamplesPerSecond = 160.3
+ Epoch[ 9 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.11703027; EvalErr[0]PerSample = 0.52000000; TotalTime = 1.5330s; SamplesPerSecond = 163.1
+Finished Epoch[ 9 of 40]: [Training Set] TrainLossPerSample = 1.1920295; TotalSamplesSeen = 16056; EvalErrPerSample = 0.53811663; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.1752
+SGD: Saving checkpoint model 'Models/model.dnn.9'
+
+Starting Epoch 10: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[10 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.18102454; EvalErr[0]PerSample = 0.48000000; TotalTime = 1.6135s; SamplesPerSecond = 154.9
+ Epoch[10 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.21773767; EvalErr[0]PerSample = 0.54000000; TotalTime = 1.5096s; SamplesPerSecond = 165.6
+ Epoch[10 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.17861060; EvalErr[0]PerSample = 0.55600000; TotalTime = 1.5606s; SamplesPerSecond = 160.2
+ Epoch[10 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.24469751; EvalErr[0]PerSample = 0.58000000; TotalTime = 1.5620s; SamplesPerSecond = 160.1
+ Epoch[10 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.17266699; EvalErr[0]PerSample = 0.52800000; TotalTime = 1.5431s; SamplesPerSecond = 162.0
+ Epoch[10 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.14131201; EvalErr[0]PerSample = 0.48000000; TotalTime = 1.5338s; SamplesPerSecond = 163.0
+ Epoch[10 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.13125244; EvalErr[0]PerSample = 0.50000000; TotalTime = 1.5341s; SamplesPerSecond = 163.0
+Finished Epoch[10 of 40]: [Training Set] TrainLossPerSample = 1.1831979; TotalSamplesSeen = 17840; EvalErrPerSample = 0.52354264; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.1351
+SGD: Saving checkpoint model 'Models/model.dnn.10'
+
+Starting Epoch 11: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[11 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.18743579; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.6508s; SamplesPerSecond = 151.4
+ Epoch[11 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.23301147; EvalErr[0]PerSample = 0.52800000; TotalTime = 1.5622s; SamplesPerSecond = 160.0
+ Epoch[11 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.20031177; EvalErr[0]PerSample = 0.55200000; TotalTime = 1.5433s; SamplesPerSecond = 162.0
+ Epoch[11 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.22415454; EvalErr[0]PerSample = 0.56800000; TotalTime = 1.6547s; SamplesPerSecond = 151.1
+ Epoch[11 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.14162354; EvalErr[0]PerSample = 0.52800000; TotalTime = 1.5630s; SamplesPerSecond = 160.0
+ Epoch[11 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.15081396; EvalErr[0]PerSample = 0.49600000; TotalTime = 1.5195s; SamplesPerSecond = 164.5
+ Epoch[11 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.13499854; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.6123s; SamplesPerSecond = 155.1
+Finished Epoch[11 of 40]: [Training Set] TrainLossPerSample = 1.1852072; TotalSamplesSeen = 19624; EvalErrPerSample = 0.52186102; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.3925
+SGD: Saving checkpoint model 'Models/model.dnn.11'
+
+Starting Epoch 12: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[12 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.17854175; EvalErr[0]PerSample = 0.47600000; TotalTime = 1.5977s; SamplesPerSecond = 156.5
+ Epoch[12 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.22788135; EvalErr[0]PerSample = 0.54000000; TotalTime = 1.5601s; SamplesPerSecond = 160.2
+ Epoch[12 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.18904956; EvalErr[0]PerSample = 0.56800000; TotalTime = 1.5617s; SamplesPerSecond = 160.1
+ Epoch[12 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.23688232; EvalErr[0]PerSample = 0.56000000; TotalTime = 1.5865s; SamplesPerSecond = 157.6
+ Epoch[12 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.14016113; EvalErr[0]PerSample = 0.52800000; TotalTime = 1.5353s; SamplesPerSecond = 162.8
+ Epoch[12 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.09963135; EvalErr[0]PerSample = 0.43600000; TotalTime = 1.5598s; SamplesPerSecond = 160.3
+ Epoch[12 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.10080127; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5091s; SamplesPerSecond = 165.7
+Finished Epoch[12 of 40]: [Training Set] TrainLossPerSample = 1.1709704; TotalSamplesSeen = 21408; EvalErrPerSample = 0.51401347; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.1885
+SGD: Saving checkpoint model 'Models/model.dnn.12'
+
+Starting Epoch 13: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[13 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.17691870; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5718s; SamplesPerSecond = 159.0
+ Epoch[13 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.24222754; EvalErr[0]PerSample = 0.56000000; TotalTime = 1.5599s; SamplesPerSecond = 160.3
+ Epoch[13 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.18109082; EvalErr[0]PerSample = 0.53600000; TotalTime = 1.5461s; SamplesPerSecond = 161.7
+ Epoch[13 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.25440747; EvalErr[0]PerSample = 0.55600000; TotalTime = 1.6036s; SamplesPerSecond = 155.9
+ Epoch[13 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.12693213; EvalErr[0]PerSample = 0.52000000; TotalTime = 1.5850s; SamplesPerSecond = 157.7
+ Epoch[13 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.13918750; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5351s; SamplesPerSecond = 162.9
+ Epoch[13 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.12267725; EvalErr[0]PerSample = 0.50000000; TotalTime = 1.5363s; SamplesPerSecond = 162.7
+Finished Epoch[13 of 40]: [Training Set] TrainLossPerSample = 1.1792737; TotalSamplesSeen = 23192; EvalErrPerSample = 0.52130049; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.2163
+SGD: Saving checkpoint model 'Models/model.dnn.13'
+
+Starting Epoch 14: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[14 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.17341504; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.6662s; SamplesPerSecond = 150.0
+ Epoch[14 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.22928271; EvalErr[0]PerSample = 0.57200000; TotalTime = 1.5676s; SamplesPerSecond = 159.5
+ Epoch[14 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.18570166; EvalErr[0]PerSample = 0.54400000; TotalTime = 1.5848s; SamplesPerSecond = 157.8
+ Epoch[14 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.23297363; EvalErr[0]PerSample = 0.54400000; TotalTime = 1.5349s; SamplesPerSecond = 162.9
+ Epoch[14 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.14529199; EvalErr[0]PerSample = 0.47200000; TotalTime = 1.5337s; SamplesPerSecond = 163.0
+ Epoch[14 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.13317969; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.5908s; SamplesPerSecond = 157.2
+ Epoch[14 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.08554639; EvalErr[0]PerSample = 0.45600000; TotalTime = 1.6401s; SamplesPerSecond = 152.4
+Finished Epoch[14 of 40]: [Training Set] TrainLossPerSample = 1.1729697; TotalSamplesSeen = 24976; EvalErrPerSample = 0.5112108; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.3963
+SGD: Saving checkpoint model 'Models/model.dnn.14'
+
+Starting Epoch 15: learning rate per sample = 0.002000  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[15 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.16467273; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.6990s; SamplesPerSecond = 147.1
+ Epoch[15 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.23537097; EvalErr[0]PerSample = 0.54000000; TotalTime = 1.6104s; SamplesPerSecond = 155.2
+ Epoch[15 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.19369727; EvalErr[0]PerSample = 0.54000000; TotalTime = 1.5914s; SamplesPerSecond = 157.1
+ Epoch[15 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.22434399; EvalErr[0]PerSample = 0.58000000; TotalTime = 1.5360s; SamplesPerSecond = 162.8
+ Epoch[15 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.13088916; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5587s; SamplesPerSecond = 160.4
+ Epoch[15 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.13693896; EvalErr[0]PerSample = 0.47600000; TotalTime = 1.5460s; SamplesPerSecond = 161.7
+ Epoch[15 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  1.08542480; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.5347s; SamplesPerSecond = 162.9
+Finished Epoch[15 of 40]: [Training Set] TrainLossPerSample = 1.1696322; TotalSamplesSeen = 26760; EvalErrPerSample = 0.51737672; AvgLearningRatePerSample = 0.0020000001; EpochTime=11.3548
+SGD: Saving checkpoint model 'Models/model.dnn.15'
+
+Starting Epoch 16: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[16 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.17701489; EvalErr[0]PerSample = 0.51200000; TotalTime = 1.6155s; SamplesPerSecond = 154.8
+ Epoch[16 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.20000781; EvalErr[0]PerSample = 0.53200000; TotalTime = 1.5908s; SamplesPerSecond = 157.2
+ Epoch[16 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.13095142; EvalErr[0]PerSample = 0.47600000; TotalTime = 1.5194s; SamplesPerSecond = 164.5
+ Epoch[16 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.16359766; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.5362s; SamplesPerSecond = 162.7
+ Epoch[16 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.03448047; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.5621s; SamplesPerSecond = 160.0
+ Epoch[16 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.06884131; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.6139s; SamplesPerSecond = 154.9
+ Epoch[16 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.98653223; EvalErr[0]PerSample = 0.38800000; TotalTime = 1.5886s; SamplesPerSecond = 157.4
+Finished Epoch[16 of 40]: [Training Set] TrainLossPerSample = 1.1095833; TotalSamplesSeen = 28544; EvalErrPerSample = 0.4730942; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.3045
+SGD: Saving checkpoint model 'Models/model.dnn.16'
+
+Starting Epoch 17: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[17 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.10315552; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.6026s; SamplesPerSecond = 156.0
+ Epoch[17 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.16677515; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5333s; SamplesPerSecond = 163.0
+ Epoch[17 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.12755615; EvalErr[0]PerSample = 0.47600000; TotalTime = 1.5354s; SamplesPerSecond = 162.8
+ Epoch[17 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.12540576; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5374s; SamplesPerSecond = 162.6
+ Epoch[17 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.03941162; EvalErr[0]PerSample = 0.46800000; TotalTime = 1.5090s; SamplesPerSecond = 165.7
+ Epoch[17 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.06559424; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.5624s; SamplesPerSecond = 160.0
+ Epoch[17 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.97907520; EvalErr[0]PerSample = 0.38800000; TotalTime = 1.6065s; SamplesPerSecond = 155.6
+Finished Epoch[17 of 40]: [Training Set] TrainLossPerSample = 1.0881981; TotalSamplesSeen = 30328; EvalErrPerSample = 0.46468613; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.1654
+SGD: Saving checkpoint model 'Models/model.dnn.17'
+
+Starting Epoch 18: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[18 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.11448206; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5646s; SamplesPerSecond = 159.8
+ Epoch[18 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.16223572; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5348s; SamplesPerSecond = 162.9
+ Epoch[18 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.10756396; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5366s; SamplesPerSecond = 162.7
+ Epoch[18 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.13071045; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.5821s; SamplesPerSecond = 158.0
+ Epoch[18 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.03748340; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.5332s; SamplesPerSecond = 163.1
+ Epoch[18 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.05143750; EvalErr[0]PerSample = 0.44400000; TotalTime = 1.5598s; SamplesPerSecond = 160.3
+ Epoch[18 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.97608740; EvalErr[0]PerSample = 0.37200000; TotalTime = 1.5332s; SamplesPerSecond = 163.1
+Finished Epoch[18 of 40]: [Training Set] TrainLossPerSample = 1.0845863; TotalSamplesSeen = 32112; EvalErrPerSample = 0.46973097; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.1228
+SGD: Saving checkpoint model 'Models/model.dnn.18'
+
+Starting Epoch 19: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[19 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.08363135; EvalErr[0]PerSample = 0.47600000; TotalTime = 1.6201s; SamplesPerSecond = 154.3
+ Epoch[19 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.15833130; EvalErr[0]PerSample = 0.52000000; TotalTime = 1.5908s; SamplesPerSecond = 157.2
+ Epoch[19 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.09730273; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.5626s; SamplesPerSecond = 160.0
+ Epoch[19 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.12903687; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5094s; SamplesPerSecond = 165.6
+ Epoch[19 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.01531689; EvalErr[0]PerSample = 0.43600000; TotalTime = 1.5674s; SamplesPerSecond = 159.5
+ Epoch[19 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.04223096; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5374s; SamplesPerSecond = 162.6
+ Epoch[19 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.97324609; EvalErr[0]PerSample = 0.37200000; TotalTime = 1.5353s; SamplesPerSecond = 162.8
+Finished Epoch[19 of 40]: [Training Set] TrainLossPerSample = 1.0741218; TotalSamplesSeen = 33896; EvalErrPerSample = 0.4557175; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.2098
+SGD: Saving checkpoint model 'Models/model.dnn.19'
+
+Starting Epoch 20: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[20 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.09284192; EvalErr[0]PerSample = 0.46800000; TotalTime = 1.6204s; SamplesPerSecond = 154.3
+ Epoch[20 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.15907800; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5610s; SamplesPerSecond = 160.2
+ Epoch[20 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.10134595; EvalErr[0]PerSample = 0.44400000; TotalTime = 1.5845s; SamplesPerSecond = 157.8
+ Epoch[20 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.11334546; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.5357s; SamplesPerSecond = 162.8
+ Epoch[20 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.02120410; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.5336s; SamplesPerSecond = 163.0
+ Epoch[20 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.01945605; EvalErr[0]PerSample = 0.42400000; TotalTime = 1.5083s; SamplesPerSecond = 165.8
+ Epoch[20 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.96233496; EvalErr[0]PerSample = 0.34800000; TotalTime = 1.5600s; SamplesPerSecond = 160.3
+Finished Epoch[20 of 40]: [Training Set] TrainLossPerSample = 1.0696442; TotalSamplesSeen = 35680; EvalErrPerSample = 0.44899106; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.1821
+SGD: Saving checkpoint model 'Models/model.dnn.20'
+
+Starting Epoch 21: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[21 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.07078076; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5895s; SamplesPerSecond = 157.3
+ Epoch[21 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.14685815; EvalErr[0]PerSample = 0.52400000; TotalTime = 1.5095s; SamplesPerSecond = 165.6
+ Epoch[21 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.08675366; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.6152s; SamplesPerSecond = 154.8
+ Epoch[21 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.12522070; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5358s; SamplesPerSecond = 162.8
+ Epoch[21 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.00915527; EvalErr[0]PerSample = 0.42800000; TotalTime = 1.5873s; SamplesPerSecond = 157.5
+ Epoch[21 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.03337988; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.6181s; SamplesPerSecond = 154.5
+ Epoch[21 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.95768555; EvalErr[0]PerSample = 0.37600000; TotalTime = 1.5866s; SamplesPerSecond = 157.6
+Finished Epoch[21 of 40]: [Training Set] TrainLossPerSample = 1.0637348; TotalSamplesSeen = 37464; EvalErrPerSample = 0.44843051; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.321
+SGD: Saving checkpoint model 'Models/model.dnn.21'
+
+Starting Epoch 22: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[22 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.06790540; EvalErr[0]PerSample = 0.45600000; TotalTime = 1.5728s; SamplesPerSecond = 159.0
+ Epoch[22 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.13811951; EvalErr[0]PerSample = 0.50800000; TotalTime = 1.5880s; SamplesPerSecond = 157.4
+ Epoch[22 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.07182349; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5126s; SamplesPerSecond = 165.3
+ Epoch[22 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.11092163; EvalErr[0]PerSample = 0.50000000; TotalTime = 1.5744s; SamplesPerSecond = 158.8
+ Epoch[22 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.00884473; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5633s; SamplesPerSecond = 159.9
+ Epoch[22 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.01228906; EvalErr[0]PerSample = 0.42000000; TotalTime = 1.5355s; SamplesPerSecond = 162.8
+ Epoch[22 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.96577490; EvalErr[0]PerSample = 0.38800000; TotalTime = 1.5370s; SamplesPerSecond = 162.7
+Finished Epoch[22 of 40]: [Training Set] TrainLossPerSample = 1.0564474; TotalSamplesSeen = 39248; EvalErrPerSample = 0.45011213; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.1625
+SGD: Saving checkpoint model 'Models/model.dnn.22'
+
+Starting Epoch 23: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[23 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.06304297; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.6135s; SamplesPerSecond = 154.9
+ Epoch[23 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.15125903; EvalErr[0]PerSample = 0.52400000; TotalTime = 1.5396s; SamplesPerSecond = 162.4
+ Epoch[23 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.08162134; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5638s; SamplesPerSecond = 159.9
+ Epoch[23 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.11692627; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5110s; SamplesPerSecond = 165.5
+ Epoch[23 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  1.00341113; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.5626s; SamplesPerSecond = 160.0
+ Epoch[23 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.04369727; EvalErr[0]PerSample = 0.43600000; TotalTime = 1.5866s; SamplesPerSecond = 157.6
+ Epoch[23 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.95216406; EvalErr[0]PerSample = 0.36800000; TotalTime = 1.5632s; SamplesPerSecond = 159.9
+Finished Epoch[23 of 40]: [Training Set] TrainLossPerSample = 1.0605533; TotalSamplesSeen = 41032; EvalErrPerSample = 0.45627806; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.2194
+SGD: Saving checkpoint model 'Models/model.dnn.23'
+
+Starting Epoch 24: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[24 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.06433521; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.6628s; SamplesPerSecond = 150.4
+ Epoch[24 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.14695752; EvalErr[0]PerSample = 0.50400000; TotalTime = 1.5472s; SamplesPerSecond = 161.6
+ Epoch[24 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.07167041; EvalErr[0]PerSample = 0.47200000; TotalTime = 1.5879s; SamplesPerSecond = 157.4
+ Epoch[24 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.11027612; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.6690s; SamplesPerSecond = 149.8
+ Epoch[24 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.98264355; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5620s; SamplesPerSecond = 160.1
+ Epoch[24 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.02134619; EvalErr[0]PerSample = 0.40000000; TotalTime = 1.6465s; SamplesPerSecond = 151.8
+ Epoch[24 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.95342480; EvalErr[0]PerSample = 0.39200000; TotalTime = 1.6116s; SamplesPerSecond = 155.1
+Finished Epoch[24 of 40]: [Training Set] TrainLossPerSample = 1.0523667; TotalSamplesSeen = 42816; EvalErrPerSample = 0.44506729; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.5655
+SGD: Saving checkpoint model 'Models/model.dnn.24'
+
+Starting Epoch 25: learning rate per sample = 0.000400  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[25 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.04587781; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.5885s; SamplesPerSecond = 157.4
+ Epoch[25 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.11651624; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.5874s; SamplesPerSecond = 157.5
+ Epoch[25 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.06691211; EvalErr[0]PerSample = 0.46800000; TotalTime = 1.5860s; SamplesPerSecond = 157.6
+ Epoch[25 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.09806934; EvalErr[0]PerSample = 0.49600000; TotalTime = 1.5834s; SamplesPerSecond = 157.9
+ Epoch[25 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.97808154; EvalErr[0]PerSample = 0.40400000; TotalTime = 1.5541s; SamplesPerSecond = 160.9
+ Epoch[25 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.01470215; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5092s; SamplesPerSecond = 165.7
+ Epoch[25 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.94526904; EvalErr[0]PerSample = 0.36800000; TotalTime = 1.5600s; SamplesPerSecond = 160.3
+Finished Epoch[25 of 40]: [Training Set] TrainLossPerSample = 1.0397542; TotalSamplesSeen = 44600; EvalErrPerSample = 0.44002244; AvgLearningRatePerSample = 0.00039999999; EpochTime=11.2469
+SGD: Saving checkpoint model 'Models/model.dnn.25'
+
+Starting Epoch 26: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[26 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.06642322; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.6198s; SamplesPerSecond = 154.3
+ Epoch[26 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.12893591; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5842s; SamplesPerSecond = 157.8
+ Epoch[26 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.04572925; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5870s; SamplesPerSecond = 157.5
+ Epoch[26 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.08523145; EvalErr[0]PerSample = 0.45600000; TotalTime = 1.5095s; SamplesPerSecond = 165.6
+ Epoch[26 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.98822314; EvalErr[0]PerSample = 0.42000000; TotalTime = 1.5093s; SamplesPerSecond = 165.6
+ Epoch[26 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.00871045; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.6088s; SamplesPerSecond = 155.4
+ Epoch[26 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.93960889; EvalErr[0]PerSample = 0.34000000; TotalTime = 1.5688s; SamplesPerSecond = 159.4
+Finished Epoch[26 of 40]: [Training Set] TrainLossPerSample = 1.0393263; TotalSamplesSeen = 46384; EvalErrPerSample = 0.43946192; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.266
+SGD: Saving checkpoint model 'Models/model.dnn.26'
+
+Starting Epoch 27: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[27 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.04142236; EvalErr[0]PerSample = 0.45200000; TotalTime = 1.6448s; SamplesPerSecond = 152.0
+ Epoch[27 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.10846338; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5600s; SamplesPerSecond = 160.3
+ Epoch[27 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.05290576; EvalErr[0]PerSample = 0.42400000; TotalTime = 1.5361s; SamplesPerSecond = 162.8
+ Epoch[27 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.07863330; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.5387s; SamplesPerSecond = 162.5
+ Epoch[27 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.97692920; EvalErr[0]PerSample = 0.42400000; TotalTime = 1.5102s; SamplesPerSecond = 165.5
+ Epoch[27 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  1.00829443; EvalErr[0]PerSample = 0.42400000; TotalTime = 1.5349s; SamplesPerSecond = 162.9
+ Epoch[27 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.90479492; EvalErr[0]PerSample = 0.33200000; TotalTime = 1.5645s; SamplesPerSecond = 159.8
+Finished Epoch[27 of 40]: [Training Set] TrainLossPerSample = 1.0254066; TotalSamplesSeen = 48168; EvalErrPerSample = 0.4304933; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1928
+SGD: Saving checkpoint model 'Models/model.dnn.27'
+
+Starting Epoch 28: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[28 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.03829065; EvalErr[0]PerSample = 0.45600000; TotalTime = 1.6156s; SamplesPerSecond = 154.7
+ Epoch[28 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.09814709; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.5091s; SamplesPerSecond = 165.7
+ Epoch[28 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.06083716; EvalErr[0]PerSample = 0.45200000; TotalTime = 1.5632s; SamplesPerSecond = 159.9
+ Epoch[28 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.06892725; EvalErr[0]PerSample = 0.44400000; TotalTime = 1.5850s; SamplesPerSecond = 157.7
+ Epoch[28 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.97100488; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.6105s; SamplesPerSecond = 155.2
+ Epoch[28 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.98884375; EvalErr[0]PerSample = 0.38800000; TotalTime = 1.6114s; SamplesPerSecond = 155.1
+ Epoch[28 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.91798389; EvalErr[0]PerSample = 0.34400000; TotalTime = 1.5673s; SamplesPerSecond = 159.5
+Finished Epoch[28 of 40]: [Training Set] TrainLossPerSample = 1.0227952; TotalSamplesSeen = 49952; EvalErrPerSample = 0.42713007; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.3496
+SGD: Saving checkpoint model 'Models/model.dnn.28'
+
+Starting Epoch 29: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[29 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.02307349; EvalErr[0]PerSample = 0.40000000; TotalTime = 1.6707s; SamplesPerSecond = 149.6
+ Epoch[29 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.09277661; EvalErr[0]PerSample = 0.47600000; TotalTime = 1.5674s; SamplesPerSecond = 159.5
+ Epoch[29 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.04049023; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5810s; SamplesPerSecond = 158.1
+ Epoch[29 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.06729639; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5375s; SamplesPerSecond = 162.6
+ Epoch[29 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.94557080; EvalErr[0]PerSample = 0.38000000; TotalTime = 1.5807s; SamplesPerSecond = 158.2
+ Epoch[29 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.99167627; EvalErr[0]PerSample = 0.39600000; TotalTime = 1.5114s; SamplesPerSecond = 165.4
+ Epoch[29 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.93072461; EvalErr[0]PerSample = 0.35200000; TotalTime = 1.5652s; SamplesPerSecond = 159.7
+Finished Epoch[29 of 40]: [Training Set] TrainLossPerSample = 1.015007; TotalSamplesSeen = 51736; EvalErrPerSample = 0.41199553; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.2924
+SGD: Saving checkpoint model 'Models/model.dnn.29'
+
+Starting Epoch 30: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[30 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.02801624; EvalErr[0]PerSample = 0.42400000; TotalTime = 1.5786s; SamplesPerSecond = 158.4
+ Epoch[30 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.12999329; EvalErr[0]PerSample = 0.50800000; TotalTime = 1.6419s; SamplesPerSecond = 152.3
+ Epoch[30 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.04349927; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.5858s; SamplesPerSecond = 157.7
+ Epoch[30 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.07489209; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.5378s; SamplesPerSecond = 162.6
+ Epoch[30 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.96010596; EvalErr[0]PerSample = 0.40000000; TotalTime = 1.5887s; SamplesPerSecond = 157.4
+ Epoch[30 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.99457812; EvalErr[0]PerSample = 0.41200000; TotalTime = 1.5611s; SamplesPerSecond = 160.1
+ Epoch[30 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.92540576; EvalErr[0]PerSample = 0.35600000; TotalTime = 1.5632s; SamplesPerSecond = 159.9
+Finished Epoch[30 of 40]: [Training Set] TrainLossPerSample = 1.0250047; TotalSamplesSeen = 53520; EvalErrPerSample = 0.43105385; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.3359
+SGD: Saving checkpoint model 'Models/model.dnn.30'
+
+Starting Epoch 31: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[31 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.00373877; EvalErr[0]PerSample = 0.43200000; TotalTime = 1.6444s; SamplesPerSecond = 152.0
+ Epoch[31 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.09965259; EvalErr[0]PerSample = 0.50400000; TotalTime = 1.5385s; SamplesPerSecond = 162.5
+ Epoch[31 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.04729150; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.5613s; SamplesPerSecond = 160.1
+ Epoch[31 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.07266919; EvalErr[0]PerSample = 0.45600000; TotalTime = 1.5373s; SamplesPerSecond = 162.6
+ Epoch[31 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.94787549; EvalErr[0]PerSample = 0.40400000; TotalTime = 1.5672s; SamplesPerSecond = 159.5
+ Epoch[31 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.99225977; EvalErr[0]PerSample = 0.40400000; TotalTime = 1.5600s; SamplesPerSecond = 160.3
+ Epoch[31 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.93199756; EvalErr[0]PerSample = 0.36000000; TotalTime = 1.5384s; SamplesPerSecond = 162.5
+Finished Epoch[31 of 40]: [Training Set] TrainLossPerSample = 1.0171777; TotalSamplesSeen = 55304; EvalErrPerSample = 0.4304933; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.2256
+SGD: Saving checkpoint model 'Models/model.dnn.31'
+
+Starting Epoch 32: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[32 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.03354260; EvalErr[0]PerSample = 0.43200000; TotalTime = 1.5900s; SamplesPerSecond = 157.2
+ Epoch[32 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.08229968; EvalErr[0]PerSample = 0.49600000; TotalTime = 1.5098s; SamplesPerSecond = 165.6
+ Epoch[32 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.02990015; EvalErr[0]PerSample = 0.43600000; TotalTime = 1.5685s; SamplesPerSecond = 159.4
+ Epoch[32 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.06988647; EvalErr[0]PerSample = 0.46800000; TotalTime = 1.5355s; SamplesPerSecond = 162.8
+ Epoch[32 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.96476123; EvalErr[0]PerSample = 0.42000000; TotalTime = 1.5345s; SamplesPerSecond = 162.9
+ Epoch[32 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.95978662; EvalErr[0]PerSample = 0.38400000; TotalTime = 1.5913s; SamplesPerSecond = 157.1
+ Epoch[32 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.92331396; EvalErr[0]PerSample = 0.33600000; TotalTime = 1.5599s; SamplesPerSecond = 160.3
+Finished Epoch[32 of 40]: [Training Set] TrainLossPerSample = 1.0114605; TotalSamplesSeen = 57088; EvalErrPerSample = 0.426009; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1681
+SGD: Saving checkpoint model 'Models/model.dnn.32'
+
+Starting Epoch 33: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[33 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.03452356; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.5967s; SamplesPerSecond = 156.6
+ Epoch[33 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.08049036; EvalErr[0]PerSample = 0.48000000; TotalTime = 1.5362s; SamplesPerSecond = 162.7
+ Epoch[33 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.04628198; EvalErr[0]PerSample = 0.44400000; TotalTime = 1.5612s; SamplesPerSecond = 160.1
+ Epoch[33 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.07378076; EvalErr[0]PerSample = 0.48000000; TotalTime = 1.5611s; SamplesPerSecond = 160.1
+ Epoch[33 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.96198535; EvalErr[0]PerSample = 0.40800000; TotalTime = 1.5305s; SamplesPerSecond = 163.3
+ Epoch[33 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.98518506; EvalErr[0]PerSample = 0.40000000; TotalTime = 1.5347s; SamplesPerSecond = 162.9
+ Epoch[33 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.90443213; EvalErr[0]PerSample = 0.32800000; TotalTime = 1.5890s; SamplesPerSecond = 157.3
+Finished Epoch[33 of 40]: [Training Set] TrainLossPerSample = 1.0149323; TotalSamplesSeen = 58872; EvalErrPerSample = 0.42937222; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1879
+SGD: Saving checkpoint model 'Models/model.dnn.33'
+
+Starting Epoch 34: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[34 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.00501941; EvalErr[0]PerSample = 0.42800000; TotalTime = 1.6165s; SamplesPerSecond = 154.7
+ Epoch[34 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.07628577; EvalErr[0]PerSample = 0.51600000; TotalTime = 1.5725s; SamplesPerSecond = 159.0
+ Epoch[34 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.02486011; EvalErr[0]PerSample = 0.42800000; TotalTime = 1.5357s; SamplesPerSecond = 162.8
+ Epoch[34 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.06043042; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5369s; SamplesPerSecond = 162.7
+ Epoch[34 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.93512402; EvalErr[0]PerSample = 0.37600000; TotalTime = 1.5646s; SamplesPerSecond = 159.8
+ Epoch[34 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.97417383; EvalErr[0]PerSample = 0.39200000; TotalTime = 1.5795s; SamplesPerSecond = 158.3
+ Epoch[34 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.89626953; EvalErr[0]PerSample = 0.34800000; TotalTime = 1.5216s; SamplesPerSecond = 164.3
+Finished Epoch[34 of 40]: [Training Set] TrainLossPerSample = 0.99720311; TotalSamplesSeen = 60656; EvalErrPerSample = 0.42208523; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.2131
+SGD: Saving checkpoint model 'Models/model.dnn.34'
+
+Starting Epoch 35: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[35 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.02439404; EvalErr[0]PerSample = 0.44400000; TotalTime = 1.5715s; SamplesPerSecond = 159.1
+ Epoch[35 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.09135474; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.5102s; SamplesPerSecond = 165.5
+ Epoch[35 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.04180371; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.5115s; SamplesPerSecond = 165.4
+ Epoch[35 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.06440845; EvalErr[0]PerSample = 0.46400000; TotalTime = 1.5590s; SamplesPerSecond = 160.4
+ Epoch[35 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.94668555; EvalErr[0]PerSample = 0.40800000; TotalTime = 1.5673s; SamplesPerSecond = 159.5
+ Epoch[35 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.96230615; EvalErr[0]PerSample = 0.37200000; TotalTime = 1.5349s; SamplesPerSecond = 162.9
+ Epoch[35 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.91410254; EvalErr[0]PerSample = 0.36000000; TotalTime = 1.5108s; SamplesPerSecond = 165.5
+Finished Epoch[35 of 40]: [Training Set] TrainLossPerSample = 1.0090077; TotalSamplesSeen = 62440; EvalErrPerSample = 0.4276906; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.0444
+SGD: Saving checkpoint model 'Models/model.dnn.35'
+
+Starting Epoch 36: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[36 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.02818750; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.6131s; SamplesPerSecond = 155.0
+ Epoch[36 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.09223242; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.5873s; SamplesPerSecond = 157.5
+ Epoch[36 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.03879346; EvalErr[0]PerSample = 0.43200000; TotalTime = 1.5352s; SamplesPerSecond = 162.8
+ Epoch[36 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.07147705; EvalErr[0]PerSample = 0.49200000; TotalTime = 1.5611s; SamplesPerSecond = 160.1
+ Epoch[36 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.93065576; EvalErr[0]PerSample = 0.39200000; TotalTime = 1.6403s; SamplesPerSecond = 152.4
+ Epoch[36 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.96704150; EvalErr[0]PerSample = 0.39600000; TotalTime = 1.6192s; SamplesPerSecond = 154.4
+ Epoch[36 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.90629590; EvalErr[0]PerSample = 0.34400000; TotalTime = 1.6368s; SamplesPerSecond = 152.7
+Finished Epoch[36 of 40]: [Training Set] TrainLossPerSample = 1.0061663; TotalSamplesSeen = 64224; EvalErrPerSample = 0.42881167; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.4712
+SGD: Saving checkpoint model 'Models/model.dnn.36'
+
+Starting Epoch 37: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[37 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.01537531; EvalErr[0]PerSample = 0.44000000; TotalTime = 1.6199s; SamplesPerSecond = 154.3
+ Epoch[37 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.07377362; EvalErr[0]PerSample = 0.48400000; TotalTime = 1.5634s; SamplesPerSecond = 159.9
+ Epoch[37 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.01729663; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5090s; SamplesPerSecond = 165.7
+ Epoch[37 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.05557153; EvalErr[0]PerSample = 0.44800000; TotalTime = 1.5357s; SamplesPerSecond = 162.8
+ Epoch[37 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.95379199; EvalErr[0]PerSample = 0.39200000; TotalTime = 1.5438s; SamplesPerSecond = 161.9
+ Epoch[37 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.98580566; EvalErr[0]PerSample = 0.40400000; TotalTime = 1.5587s; SamplesPerSecond = 160.4
+ Epoch[37 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.90741846; EvalErr[0]PerSample = 0.34800000; TotalTime = 1.5364s; SamplesPerSecond = 162.7
+Finished Epoch[37 of 40]: [Training Set] TrainLossPerSample = 1.002912; TotalSamplesSeen = 66008; EvalErrPerSample = 0.41928253; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1459
+SGD: Saving checkpoint model 'Models/model.dnn.37'
+
+Starting Epoch 38: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[38 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  1.02040802; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5904s; SamplesPerSecond = 157.2
+ Epoch[38 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.08613348; EvalErr[0]PerSample = 0.47200000; TotalTime = 1.5899s; SamplesPerSecond = 157.2
+ Epoch[38 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.01944482; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5331s; SamplesPerSecond = 163.1
+ Epoch[38 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.04117285; EvalErr[0]PerSample = 0.45200000; TotalTime = 1.5624s; SamplesPerSecond = 160.0
+ Epoch[38 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.94190869; EvalErr[0]PerSample = 0.40400000; TotalTime = 1.5126s; SamplesPerSecond = 165.3
+ Epoch[38 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.97728857; EvalErr[0]PerSample = 0.39600000; TotalTime = 1.5680s; SamplesPerSecond = 159.4
+ Epoch[38 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.90187402; EvalErr[0]PerSample = 0.33600000; TotalTime = 1.5393s; SamplesPerSecond = 162.4
+Finished Epoch[38 of 40]: [Training Set] TrainLossPerSample = 1.0000705; TotalSamplesSeen = 67792; EvalErrPerSample = 0.41367716; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1822
+SGD: Saving checkpoint model 'Models/model.dnn.38'
+
+Starting Epoch 39: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[39 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  0.98616193; EvalErr[0]PerSample = 0.42800000; TotalTime = 1.6413s; SamplesPerSecond = 152.3
+ Epoch[39 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.06090131; EvalErr[0]PerSample = 0.45600000; TotalTime = 1.5587s; SamplesPerSecond = 160.4
+ Epoch[39 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.00673315; EvalErr[0]PerSample = 0.39600000; TotalTime = 1.5100s; SamplesPerSecond = 165.6
+ Epoch[39 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.04742334; EvalErr[0]PerSample = 0.45200000; TotalTime = 1.5753s; SamplesPerSecond = 158.7
+ Epoch[39 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.93056055; EvalErr[0]PerSample = 0.38800000; TotalTime = 1.5366s; SamplesPerSecond = 162.7
+ Epoch[39 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.96508203; EvalErr[0]PerSample = 0.38800000; TotalTime = 1.5091s; SamplesPerSecond = 165.7
+ Epoch[39 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.92264551; EvalErr[0]PerSample = 0.34800000; TotalTime = 1.5609s; SamplesPerSecond = 160.2
+Finished Epoch[39 of 40]: [Training Set] TrainLossPerSample = 0.98979628; TotalSamplesSeen = 69576; EvalErrPerSample = 0.40975338; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1705
+SGD: Saving checkpoint model 'Models/model.dnn.39'
+
+Starting Epoch 40: learning rate per sample = 0.000200  effective momentum = 0.500000  momentum as time constant = 36.1 samples
+
+Starting minibatch loop.
+ Epoch[40 of 40]-Minibatch[   1-  10, 14.29%]: SamplesSeen = 250; TrainLossPerSample =  0.99094690; EvalErr[0]PerSample = 0.42000000; TotalTime = 1.6696s; SamplesPerSecond = 149.7
+ Epoch[40 of 40]-Minibatch[  11-  20, 28.57%]: SamplesSeen = 250; TrainLossPerSample =  1.07810583; EvalErr[0]PerSample = 0.48800000; TotalTime = 1.5363s; SamplesPerSecond = 162.7
+ Epoch[40 of 40]-Minibatch[  21-  30, 42.86%]: SamplesSeen = 250; TrainLossPerSample =  1.03791235; EvalErr[0]PerSample = 0.42400000; TotalTime = 1.5677s; SamplesPerSecond = 159.5
+ Epoch[40 of 40]-Minibatch[  31-  40, 57.14%]: SamplesSeen = 250; TrainLossPerSample =  1.04811011; EvalErr[0]PerSample = 0.46000000; TotalTime = 1.5107s; SamplesPerSecond = 165.5
+ Epoch[40 of 40]-Minibatch[  41-  50, 71.43%]: SamplesSeen = 250; TrainLossPerSample =  0.95549219; EvalErr[0]PerSample = 0.41600000; TotalTime = 1.5855s; SamplesPerSecond = 157.7
+ Epoch[40 of 40]-Minibatch[  51-  60, 85.71%]: SamplesSeen = 250; TrainLossPerSample =  0.96514795; EvalErr[0]PerSample = 0.37600000; TotalTime = 1.5260s; SamplesPerSecond = 163.8
+ Epoch[40 of 40]-Minibatch[  61-  70, 100.00%]: SamplesSeen = 250; TrainLossPerSample =  0.89337451; EvalErr[0]PerSample = 0.34400000; TotalTime = 1.5102s; SamplesPerSecond = 165.5
+Finished Epoch[40 of 40]: [Training Set] TrainLossPerSample = 0.99871296; TotalSamplesSeen = 71360; EvalErrPerSample = 0.41928253; AvgLearningRatePerSample = 0.00019999999; EpochTime=11.1844
+SGD: Saving checkpoint model 'Models/model.dnn'
+CNTKCommandTrainEnd: Train
+
+Action "train" complete.
+
+
+##############################################################################
+#                                                                            #
+# Action "test"                                                              #
+#                                                                            #
+##############################################################################
+
+
+Post-processing network...
+
+3 roots:
+	ce = CrossEntropyWithSoftmax
+	err = ErrorPrediction
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for ce CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 22 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+Validating network. 13 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+9 out of 22 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+evalNodeNames are not specified, using all the default evalnodes and training criterion nodes.
+
+
+Allocating matrices for forward and/or backward propagation.
+Minibatch[1-45]: SamplesSeen = 448    err: ErrorPrediction/Sample = 0.48660714    ce: CrossEntropyWithSoftmax/Sample = 1.1569216    
+Final Results: Minibatch[1-45]: SamplesSeen = 448    err: ErrorPrediction/Sample = 0.48660714    ce: CrossEntropyWithSoftmax/Sample = 1.1569216    Perplexity = 3.1801283    
+
+Action "test" complete.
+
+
+##############################################################################
+#                                                                            #
+# Action "write"                                                             #
+#                                                                            #
+##############################################################################
+
+
+Post-processing network...
+
+3 roots:
+	ce = CrossEntropyWithSoftmax
+	err = ErrorPrediction
+	prediction = Softmax
+FormNestedNetwork: WARNING: Was called twice for ce CrossEntropyWithSoftmax operation
+FormNestedNetwork: WARNING: Was called twice for err ErrorPrediction operation
+FormNestedNetwork: WARNING: Was called twice for prediction Softmax operation
+
+
+Validating network. 22 nodes to process in pass 1.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+Validating network. 13 nodes to process in pass 2.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+Validating network, final pass.
+
+Validating --> labels = InputValue -> [4 x 1 x *]
+Validating --> o1.W = LearnableParameter -> [4 x 2000]
+Validating --> hiddenOut1.W = LearnableParameter -> [2000 x 49 x 49 x 20]
+Validating --> conv1_act.convW = LearnableParameter -> [20 x 75]
+Validating --> featScale = LearnableParameter -> [1 x 1]
+Validating --> features = InputValue -> [200 x 200 x 3 x *]
+Validating --> featScaled = ElementTimes(featScale[1 x 1], features[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [200 x 200 x 3 x *]
+Validating --> conv1_act.conv = Convolution(conv1_act.convW[20 x 75], featScaled[200 x 200 x 3 x * {W=200, H=3, C=200}]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.convB = LearnableParameter -> [1 x 1 x 20]
+Validating --> conv1_act.convPlusB = Plus(conv1_act.conv[196 x 196 x 20 x * {W=196, H=20, C=196}], conv1_act.convB[1 x 1 x 20]) -> [196 x 196 x 20 x *]
+Validating --> conv1_act.act = RectifiedLinear(conv1_act.convPlusB[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [196 x 196 x 20 x *]
+Validating --> pool1 = MaxPooling(conv1_act.act[196 x 196 x 20 x * {W=196, H=20, C=196}]) -> [49 x 49 x 20 x *]
+Validating --> hiddenOut1.t = Times(hiddenOut1.W[2000 x 49 x 49 x 20], pool1[49 x 49 x 20 x * {W=49, H=20, C=49}]) -> [2000 x *]
+Validating --> hiddenOut1.b = LearnableParameter -> [2000 x 1]
+Validating --> hiddenOut1.z = Plus(hiddenOut1.t[2000 x *], hiddenOut1.b[2000 x 1]) -> [2000 x 1 x *]
+Validating --> hiddenOut1.y = Sigmoid(hiddenOut1.z[2000 x 1 x *]) -> [2000 x 1 x *]
+Validating --> o1.t = Times(o1.W[4 x 2000], hiddenOut1.y[2000 x 1 x *]) -> [4 x 1 x *]
+Validating --> o1.b = LearnableParameter -> [4 x 1]
+Validating --> o1.z = Plus(o1.t[4 x 1 x *], o1.b[4 x 1]) -> [4 x 1 x *]
+Validating --> ce = CrossEntropyWithSoftmax(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> err = ErrorPrediction(labels[4 x 1 x *], o1.z[4 x 1 x *]) -> [1]
+Validating --> prediction = Softmax(o1.z[4 x 1 x *]) -> [4 x 1 x *]
+
+9 out of 22 nodes do not share the minibatch layout with the input data.
+
+Post-processing network complete.
+OutputNodeNames are not specified, using the default outputnodes.
+
+
+Allocating matrices for forward and/or backward propagation.
+Minibatch[1]: ActualMBSize = 10
+Minibatch[2]: ActualMBSize = 10
+Minibatch[3]: ActualMBSize = 10
+Minibatch[4]: ActualMBSize = 10
+Minibatch[5]: ActualMBSize = 10
+Minibatch[6]: ActualMBSize = 10
+Minibatch[7]: ActualMBSize = 10
+Minibatch[8]: ActualMBSize = 10
+Minibatch[9]: ActualMBSize = 10
+Minibatch[10]: ActualMBSize = 10
+Minibatch[11]: ActualMBSize = 10
+Minibatch[12]: ActualMBSize = 10
+Minibatch[13]: ActualMBSize = 10
+Minibatch[14]: ActualMBSize = 10
+Minibatch[15]: ActualMBSize = 10
+Minibatch[16]: ActualMBSize = 10
+Minibatch[17]: ActualMBSize = 10
+Minibatch[18]: ActualMBSize = 10
+Minibatch[19]: ActualMBSize = 10
+Minibatch[20]: ActualMBSize = 10
+Minibatch[21]: ActualMBSize = 10
+Minibatch[22]: ActualMBSize = 10
+Minibatch[23]: ActualMBSize = 10
+Minibatch[24]: ActualMBSize = 10
+Minibatch[25]: ActualMBSize = 10
+Minibatch[26]: ActualMBSize = 10
+Minibatch[27]: ActualMBSize = 10
+Minibatch[28]: ActualMBSize = 10
+Minibatch[29]: ActualMBSize = 10
+Minibatch[30]: ActualMBSize = 10
+Minibatch[31]: ActualMBSize = 10
+Minibatch[32]: ActualMBSize = 10
+Minibatch[33]: ActualMBSize = 10
+Minibatch[34]: ActualMBSize = 10
+Minibatch[35]: ActualMBSize = 10
+Minibatch[36]: ActualMBSize = 10
+Minibatch[37]: ActualMBSize = 10
+Minibatch[38]: ActualMBSize = 10
+Minibatch[39]: ActualMBSize = 10
+Minibatch[40]: ActualMBSize = 10
+Minibatch[41]: ActualMBSize = 10
+Minibatch[42]: ActualMBSize = 10
+Minibatch[43]: ActualMBSize = 10
+Minibatch[44]: ActualMBSize = 10
+Minibatch[45]: ActualMBSize = 10
+Minibatch[46]: ActualMBSize = 10
+Minibatch[47]: ActualMBSize = 10
+Minibatch[48]: ActualMBSize = 10
+Minibatch[49]: ActualMBSize = 10
+Minibatch[50]: ActualMBSize = 10
+Minibatch[51]: ActualMBSize = 10
+Minibatch[52]: ActualMBSize = 10
+Minibatch[53]: ActualMBSize = 10
+Minibatch[54]: ActualMBSize = 10
+Minibatch[55]: ActualMBSize = 10
+Minibatch[56]: ActualMBSize = 10
+Minibatch[57]: ActualMBSize = 10
+Minibatch[58]: ActualMBSize = 10
+Minibatch[59]: ActualMBSize = 10
+Minibatch[60]: ActualMBSize = 10
+Minibatch[61]: ActualMBSize = 10
+Minibatch[62]: ActualMBSize = 10
+Minibatch[63]: ActualMBSize = 10
+Minibatch[64]: ActualMBSize = 10
+Minibatch[65]: ActualMBSize = 10
+Minibatch[66]: ActualMBSize = 10
+Minibatch[67]: ActualMBSize = 10
+Minibatch[68]: ActualMBSize = 10
+Minibatch[69]: ActualMBSize = 10
+Minibatch[70]: ActualMBSize = 10
+Minibatch[71]: ActualMBSize = 10
+Minibatch[72]: ActualMBSize = 10
+Minibatch[73]: ActualMBSize = 10
+Minibatch[74]: ActualMBSize = 10
+Minibatch[75]: ActualMBSize = 10
+Minibatch[76]: ActualMBSize = 10
+Minibatch[77]: ActualMBSize = 10
+Minibatch[78]: ActualMBSize = 10
+Minibatch[79]: ActualMBSize = 10
+Minibatch[80]: ActualMBSize = 10
+Minibatch[81]: ActualMBSize = 10
+Minibatch[82]: ActualMBSize = 10
+Minibatch[83]: ActualMBSize = 10
+Minibatch[84]: ActualMBSize = 10
+Minibatch[85]: ActualMBSize = 10
+Minibatch[86]: ActualMBSize = 10
+Minibatch[87]: ActualMBSize = 10
+Minibatch[88]: ActualMBSize = 10
+Minibatch[89]: ActualMBSize = 10
+Minibatch[90]: ActualMBSize = 10
+Minibatch[91]: ActualMBSize = 10
+Minibatch[92]: ActualMBSize = 2
+Written to output_MirFlickr.txt*
+Total Samples Evaluated = 912
+
+Action "write" complete.
+
+COMPLETED

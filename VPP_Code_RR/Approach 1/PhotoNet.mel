@@ -1,0 +1,12 @@
+m=LoadModel(Models/model.dnn, format=cntk)
+SetDefaultModel(m)
+
+# This is just to try access the values
+DumpNode(act1.convW, dumpFile.dump, includeData=true)
+
+# DumpModel(m, "m.dmp", includeData = true)
+
+
+# SetPropertyForSubTree(CE, batchNormEvalMode, true)
+
+# SaveModel(m, $NewModel$, format=cntk)
