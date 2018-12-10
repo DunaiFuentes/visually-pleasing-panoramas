@@ -3,12 +3,19 @@
 **Official internal publication at:** https://infoscience.epfl.ch/record/218746
 
 **Advisor(s):**
+
 Vetterli, Martin
+
 Scholefield, Adam James
+
 Bejar Haro, Benjamin
+
 **Year:** 2016
+
 **Keywords:** deep learning ; aesthetics
+
 **Note:** MASTER_SEMESTER
+
 **Laboratories:** LCAV
 
 **Abstract:**
